@@ -1,0 +1,13 @@
+sander:
+  module        : sander
+  class         : Sander
+
+  # light_sensor  : input_number.test_slider
+  light_sensor  : sensor.br_irradiance
+  threshold     : 50
+  hysteresis    : 10
+  device_tracker:
+    - device_tracker.sander_sander
+    - device_tracker.lys_iphone
+  notifiers:
+    - telegram_sander

@@ -133,7 +133,9 @@ dmypy.json
 
 # Custom
 *.env
-data/appdaemon
+data/appdaemon/conf/compiled
+data/appdaemon/conf/dashboards
+data/appdaemon/conf/appdaemon.yaml
 data/db
 data/grafana
 data/homeassistant/.storage

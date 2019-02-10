@@ -1,0 +1,7 @@
+transmission_monitor:
+  module        : transmission
+  class         : TransmissionMonitor
+
+  notifiers:
+    - telegram_sander
+    # - telegram_steven

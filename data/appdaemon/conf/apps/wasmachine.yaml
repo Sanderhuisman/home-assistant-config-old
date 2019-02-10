@@ -1,0 +1,10 @@
+wasmachine_monitor:
+  module        : wasmachine
+  class         : WasmachineMonitor
+  switch_state  : switch.blitzwolf_wasmachine_state
+  sensor_power  : sensor.blitzwolf_wasmachine_power
+  delay         : 120
+  threshold     : 2
+  notifiers:
+    - telegram_sander
+    - telegram_steven
