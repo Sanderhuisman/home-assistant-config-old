@@ -1,0 +1,14 @@
+path: hallway
+title: Hallway
+cards:
+  - type: entities
+    title: Lights
+    entities:
+      - light.hall_christmas_lights
+
+  - type: entities
+    title: Climate
+    show_header_toggle: false
+    entities:
+      - sensor.hall_climate_temperature
+      - sensor.hall_climate_humidity

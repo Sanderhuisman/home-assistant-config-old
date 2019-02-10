@@ -1,0 +1,17 @@
+path: kitchen
+title: Kitchen
+cards:
+  - type: entities
+    title: Lights
+    entities:
+      - light.kitchen_christmas_lights
+
+  - type: entity-filter
+    show_header_toggle: false
+    entities:
+      - media_player.spotify
+    state_filter:
+      - 'playing'
+    card:
+      type: media-control
+      entity: media_player.spotify

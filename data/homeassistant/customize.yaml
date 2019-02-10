@@ -1,0 +1,74 @@
+light.steven_ledstrip:
+  friendly_name: LED strip
+sensor.sander_climate_temperature:
+  friendly_name: Temperature Sander
+sensor.sander_climate_humidity:
+  friendly_name: Humidity Sander
+  icon: mdi:water-percent
+sensor.steven_climate_pressure:
+  friendly_name: Pressure Steven
+  icon: mdi:gauge
+sensor.steven_climate_temperature:
+  friendly_name: Temperature Steven
+history_graph.climate_graph:
+  friendly_name: Climate graph
+history_graph.sander_climate_graph:
+  friendly_name: Climate graph Sander
+history_graph.steven_climate_graph:
+  friendly_name: Climate graph Steven
+media_player.samsung_tv_remote:
+  friendly_name: TV Steven
+light.kitchen_christmas_lights:
+  friendly_name: Kitchen Christmas Lights
+light.hall_christmas_lights:
+  friendly_name: Hallway Christmas Lights
+sensor.hall_climate_humidity:
+  friendly_name: Humidity Hallway
+  icon: mdi:water-percent
+sensor.hall_climate_temperature:
+  friendly_name: Temperature Hallway
+history_graph.hall_climate_graph:
+  friendly_name: Climate Graph Hallway
+configurator.axis00408c93b587local_16925420135:
+  hidden: true
+  homebridge_hidden: true
+sensor.kotnetnas_transmission_active_torrents:
+  friendly_name: Transmission Active Torrents
+sensor.kotnetnas_transmission_down_speed:
+  friendly_name: Transmission Down Speed
+sensor.kotnetnas_transmission_up_speed:
+  friendly_name: Transmission Up Speed
+sensor.kotnetnas_transmission_status:
+  friendly_name: Transmission Status
+device_tracker.lys_iphone:
+  friendly_name: Lys
+sensor.br_ground_temperature:
+  friendly_name: Ground temperature
+sensor.br_wind_speed:
+  friendly_name: Wind speed
+sensor.br_humidity:
+  friendly_name: Humidity
+sensor.br_wind_direction:
+  friendly_name: Wind direction
+sensor.br_temperature:
+  friendly_name: Temperature
+sensor.br_pressure:
+  friendly_name: Pressure
+sensor.br_irradiance:
+  friendly_name: Irradiance
+sensor.br_precipitation:
+  friendly_name: Precipitation
+sensor.disk_use_percent:
+  friendly_name: Disk use (percent)
+sensor.huize_pd_kirsten:
+  friendly_name: Kirsten
+sensor.huize_pd_sander:
+  friendly_name: Sander
+sensor.huize_pd_linda:
+  friendly_name: Linda
+sensor.huize_pd_thomas:
+  friendly_name: Thomas
+sensor.huize_pd_steven:
+  friendly_name: Steven
+sensor.huize_pd_pascalle:
+  friendly_name: Pascalle

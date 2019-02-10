@@ -1,0 +1,31 @@
+light:
+  - platform: mqtt
+    name                  : hall_christmas_lights
+    state_topic           : "stat/sonoff_hall/POWER"
+    command_topic         : "cmnd/sonoff_hall/POWER"
+    availability_topic    : "tele/sonoff_hall/LWT"
+    qos                   : 1
+    payload_on            : "ON"
+    payload_off           : "OFF"
+    payload_available     : "Online"
+    payload_not_available : "Offline"
+    retain                : true
+
+sensor:
+  - platform: mqtt
+    name                : hall_climate_temperature
+    state_topic         : '/hall/sens/climate/temperature'
+    unit_of_measurement : '°C'
+  - platform: mqtt
+    name                : hall_climate_humidity
+    state_topic         : '/hall/sens/climate/humidity'
+    unit_of_measurement : '%'
+
+group:
+  hallway_climate:
+    name: Climate
+    view: no
+    control: hidden
+    entities:
+      - sensor.hall_climate_temperature
+      - sensor.hall_climate_humidity

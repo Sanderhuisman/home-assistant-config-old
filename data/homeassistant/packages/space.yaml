@@ -1,0 +1,3 @@
+sensor:
+  - platform: launch_library
+    name: spacelaunch

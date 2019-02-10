@@ -1,0 +1,152 @@
+- alias: Lights on
+  action:
+  - data:
+      entity_id:
+      - light.kitchen_christmas_lights
+      - light.hall_christmas_lights
+    service: light.turn_on
+  - data:
+      message: Light in the kitchen and hallway are turned on
+    service: notify.notifier
+  id: '1520286524786'
+  condition:
+  - after: sunset
+    after_offset: -01:00:00
+    condition: sun
+  - condition: state
+    entity_id: group.all_devices
+    state: home
+  trigger:
+  - event: sunset
+    offset: -01:00:00
+    platform: sun
+  - entity_id: group.all_devices
+    from: not_home
+    platform: state
+    to: home
+- id: '1523476422562'
+  alias: Lights off
+  trigger:
+  - at: '23:59:00'
+    platform: time
+  - entity_id: group.all_devices
+    from: home
+    platform: state
+    to: not_home
+  condition: []
+  action:
+  - data:
+      entity_id:
+      - light.kitchen_christmas_lights
+      - light.hall_christmas_lights
+    service: light.turn_off
+  - data:
+      message: Light in the kitchen and hallway are turned off
+    service: notify.notifier
+- action:
+  - data:
+      entity_id:
+      - light.steven_ledstrip
+    service: light.turn_on
+  alias: Steven LED Strip on
+  condition:
+  - condition: state
+    entity_id: device_tracker.steven_android
+    state: home
+  - after: sunset
+    after_offset: -01:00:00
+    condition: sun
+  id: '1523477383988'
+  trigger:
+  - entity_id: device_tracker.steven_android
+    from: not_home
+    platform: state
+    to: home
+  - event: sunset
+    offset: -01:00:00
+    platform: sun
+- action:
+  - data:
+      entity_id:
+      - light.steven_ledstrip
+    service: light.turn_off
+  alias: Steven LED Strip off
+  condition: []
+  id: '1523477534878'
+  trigger:
+  - entity_id: device_tracker.steven_android
+    from: home
+    platform: state
+    to: not_home
+- id: '1523484666836'
+  alias: Sander light on
+  trigger:
+  - event: sunset
+    offset: -01:00:00
+    platform: sun
+  - entity_id: device_tracker.sander_sander
+    from: not_home
+    platform: state
+    to: home
+  condition:
+  - after: sunset
+    after_offset: -01:00:00
+    condition: sun
+  - condition: state
+    entity_id: device_tracker.sander_sander
+    state: home
+  action:
+  - data:
+      entity_id:
+      - light.kamer_sander
+    service: light.turn_on
+  - data:
+      message: Sander light on
+    service: notify.notifier
+  - data:
+      message: Sander lights on
+      title: Automation
+    service: persistent_notification.create
+- id: '1523484905416'
+  alias: Sander light off
+  trigger:
+  - entity_id: device_tracker.sander_sander
+    from: home
+    platform: state
+    to: not_home
+  condition:
+  - condition: state
+    entity_id: light.kamer_sander
+    state: 'on'
+  action:
+  - data:
+      entity_id:
+      - light.kamer_sander
+    service: light.turn_off
+  - data:
+      message: Sander light off
+    service: notify.notifier
+  - data:
+      message: Sander lights off
+      title: Automation
+    service: persistent_notification.create
+- id: '1544480559466'
+  alias: Set dark theme for the night
+  trigger:
+  - event: sunset
+    platform: sun
+  condition: []
+  action:
+  - service: frontend.set_theme
+    data:
+      name: midnight
+- id: '1544480671521'
+  alias: Set theme at sunrise
+  trigger:
+  - event: sunrise
+    platform: sun
+  condition: []
+  action:
+  - data:
+      name: light-navy-blue
+    service: frontend.set_theme

@@ -1,0 +1,71 @@
+sensor:
+  - platform: cpuspeed
+    name: CPU
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /
+      - type: memory_use_percent
+      - type: memory_use
+      - type: memory_free
+      - type: processor_use
+      - type: swap_use_percent
+      - type: swap_use
+      - type: swap_free
+      - type: last_boot
+
+  - platform: pi_hole
+    host: !secret server_pihole_host
+    monitored_conditions:
+      - ads_blocked_today
+      - ads_percentage_today
+      - dns_queries_today
+      - domains_being_blocked
+      - queries_cached
+      - queries_forwarded
+      - unique_clients
+      - unique_domains
+      - clients_ever_seen
+
+# docker_monitor:
+#   containers:
+#     - homeassistant_homeassistant_1
+#     - homeassistant_database_1
+#     - homeassistant_mosquitto_1
+#     - homeassistant_tasmoadmin_1
+#     - homeassistant_appdaemon_1
+#     - homeassistant_telegraf_1
+#     - homeassistant_kapacitor_1
+#     - homeassistant_chronograf_1
+#     - homeassistant_influxdb_1
+#     - homeassistant_grafana_1
+
+#     - management_portainer_1
+#     - management_watchtower_1
+#     - management_traefik_1
+#     - management_pihole_1
+
+#     - media_transmission_1
+#     - media_transmission-proxy_1
+#     - media_sickchill_1
+#     - media_couchpotato_1
+#     - media_plex_1
+
+#     - cloud_nextcloud_1
+#     - cloud_database_1
+#   monitored_conditions:
+#     - utilization_version
+#     - container_status
+#     - container_cpu_percentage_usage
+#     - container_memory_percentage_usage
+#     - container_network_speed_up
+#     - container_network_speed_down
+#     - container_network_total_up
+#     - container_network_total_down
+
+# media_player:
+#   - platform: plex
+#     include_non_clients : false
+#     scan_interval       : 10
+#     show_all_controls   : false
+#     use_episode_art     : false

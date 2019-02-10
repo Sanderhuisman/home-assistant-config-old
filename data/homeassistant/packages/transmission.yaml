@@ -1,0 +1,14 @@
+transmission:
+  name    : kotnetnas_transmission
+  host    : !secret transmission_host
+  username: !secret transmission_username
+  password: !secret transmission_password
+  monitored_conditions:
+    - current_status
+    - download_speed
+    - upload_speed
+    - active_torrents
+    - paused_torrents
+    - total_torrents
+    - started_torrents
+    - completed_torrents

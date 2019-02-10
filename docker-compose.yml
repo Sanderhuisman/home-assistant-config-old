@@ -1,0 +1,160 @@
+version: '3'
+
+services:
+  database:
+    image: mariadb:latest
+    restart: unless-stopped
+    env_file:
+      - mariadb.env
+    networks:
+      - default
+    volumes:
+      - ./data/db/mariadb:/var/lib/mysql
+
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/mosquitto/config:/mosquitto/config
+      - ./data/mosquitto/data:/mosquitto/data
+      - ./data/mosquitto/log:/mosquitto/log
+    networks:
+      - default
+    ports:
+      - 1883:1883
+
+  appdaemon:
+    image: acockburn/appdaemon:latest
+    restart: unless-stopped
+    ports:
+      - 5051:5050
+    networks:
+      - default
+      - web
+    volumes:
+      - ./data/appdaemon/conf:/conf
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - appdaemon.env
+
+  tasmoadmin:
+    image: raymondmm/tasmoadmin:latest
+    restart: unless-stopped
+    networks:
+      - default
+    ports:
+      - 8124:80
+    volumes:
+      - ./data/tasmoadmin:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - homeassistant
+
+  # Define a Telegraf service
+  telegraf:
+    image: telegraf:latest
+    restart: unless-stopped
+    networks:
+      - default
+    volumes:
+      - ./config/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    links:
+      - influxdb
+    ports:
+      - 8092:8092/udp
+      - 8094:8094
+      - 8125:8125/udp
+
+  # Define a Chronograf service
+  chronograf:
+    image: chronograf:latest
+    restart: unless-stopped
+    networks:
+      - default
+    environment:
+      INFLUXDB_URL: http://influxdb:8086
+      KAPACITOR_URL: http://kapacitor:9092
+    ports:
+      - 8888:8888
+    links:
+      - influxdb
+      - kapacitor
+
+  # Define a Kapacitor service
+  kapacitor:
+    image: kapacitor:latest
+    restart: unless-stopped
+    networks:
+      - default
+    environment:
+      KAPACITOR_HOSTNAME: kapacitor
+      KAPACITOR_INFLUXDB_0_URLS_0: http://influxdb:8086
+    links:
+      - influxdb
+    ports:
+      - 9092:9092
+
+  influxdb:
+    image: influxdb:latest
+    restart: unless-stopped
+    networks:
+      - default
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # sudo mkdir -p /data/influxdb/data
+      - ./data/influxdb/data:/var/lib/influxdb
+
+  grafana:
+    image: grafana/grafana:latest
+    restart: unless-stopped
+    expose:
+      - "3000"
+    networks:
+      - default
+      - web
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./config/grafana.ini:/etc/grafana/grafana.ini
+      # sudo mkdir -p data/grafana && sudo chown 472:472 data/grafana
+      - ./data/grafana:/var/lib/grafana
+    depends_on:
+      - chronograf
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:grafana.huizepd.nl"
+      - "traefik.port=3000"
+      - "traefik.protocol=http"
+
+  homeassistant:
+    image: homeassistant/home-assistant:0.87.0
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/homeassistant:/config
+    networks:
+      - default
+      - web
+    expose:
+     - "8123"
+    depends_on:
+      - database
+      - chronograf
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:home.huizepd.nl"
+      - "traefik.port=8123"
+      - "traefik.protocol=http"
+
+networks:
+  default:
+    external: false
+  web:
+    external: true

@@ -1,0 +1,24 @@
+asuswrt:
+  username: !secret asus_username
+  password: !secret asus_password
+  host:     !secret asus_host
+  sensors:
+    - upload
+    - upload_speed
+    - download
+    - download_speed
+
+device_tracker:
+  - platform: asuswrt
+    interval_seconds  : 10
+    consider_home     : 360
+    new_device_defaults:
+      track_new_devices : false
+      hide_if_away      : false
+
+owntracks:
+  max_gps_accuracy: 100
+  waypoints: false
+#   mqtt_topic: "owntracks/#"
+#   # events_only: true
+#   events_only: false

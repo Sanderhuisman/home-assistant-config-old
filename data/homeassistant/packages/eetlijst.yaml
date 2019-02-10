@@ -1,0 +1,4 @@
+sensor:
+  - platform: eetlijst
+    username: !secret eetlijst_username
+    password: !secret eetlijst_password

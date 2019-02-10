@@ -1,0 +1,32 @@
+sensor:
+  - platform: mqtt
+    name                : steven_climate_temperature
+    state_topic         : 'steven/room/temperature'
+    unit_of_measurement : '°C'
+  - platform: mqtt
+    name                : steven_climate_pressure
+    state_topic         : 'steven/room/pressure'
+    unit_of_measurement : 'hPa'
+
+light:
+  - platform: mqtt
+    name: steven_ledstrip
+    state_topic:                'steven/ledstrip/light/status'
+    command_topic:              'steven/ledstrip/light/switch'
+    brightness_state_topic:     'steven/ledstrip/brightness/status'
+    brightness_command_topic:   'steven/ledstrip/brightness/set'
+    rgb_state_topic:            'steven/ledstrip/rgb/status'
+    rgb_command_topic:          'steven/ledstrip/rgb/set'
+    effect_command_topic:       'steven/ledstrip/effect/set'
+    effect_state_topic:         'steven/ledstrip/effect/status'
+    effect_list:
+      - none
+      - disco
+    brightness_scale: 100
+    optimistic: false
+
+# media_player:
+#   - platform: samsungtv
+#     host: !secret steven_samsungtv_host
+#     port: !secret steven_samsungtv_port
+#     mac : !secret steven_samsungtv_mac

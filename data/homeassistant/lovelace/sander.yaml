@@ -1,0 +1,109 @@
+path: sander
+title: Sander
+cards:
+  - type: entity-button
+    title: Master
+    entity: input_boolean.master
+
+  - type: entities
+    title: Lights
+    show_header_toggle: true
+    entities:
+      - type: custom:slider-entity-row
+        entity: light.bed
+      - type: custom:slider-entity-row
+        entity: light.desk
+      - type: custom:slider-entity-row
+        entity: light.table
+
+  - type: horizontal-stack
+    title: Climate
+    cards:
+    - type: sensor
+      name        : Temperature
+      entity      : sensor.sander_climate_temperature
+      graph       : line
+    - type: sensor
+      name        : Humidity
+      entity      : sensor.sander_climate_humidity
+      graph       : line
+  - type: entities
+    show_header_toggle: false
+    title: NS
+    entities:
+      - sensor.enschede_groningen
+      - sensor.groningen_zwolle_enschede
+  - type: entities
+    show_header_toggle: false
+    title: PostNL
+    entities:
+      - sensor.postnl
+  - type: entities
+    show_header_toggle: false
+    title: Space Launches
+    entities:
+      - sensor.spacelaunch
+  - type: vertical-stack
+    cards:
+      - type: media-control
+        entity: media_player.sander_chromecast
+      - type: media-control
+        entity: media_player.sander_home_mini
+      - type: sensor
+        entity: sensor.plex
+
+  - type: entities
+    title: Switches
+    show_header_toggle: false
+    entities:
+      - entity: switch.sander_sw1
+        name: Christmas Tree
+
+  - type: glance
+    title: DSM
+    entities:
+      - entity: sensor.cpu_load_total
+        name  : CPU load
+      - entity: sensor.memory_usage_real
+        name  : Memory use
+      - entity: sensor.network_up
+        name  : Network up
+      - entity: sensor.network_down
+        name  : Network down
+      - entity: sensor.status_sda
+        name  : SDA status
+      - entity: sensor.status_smart_sda
+        name  : SDA SMART status
+      - entity: sensor.temperature_sda
+        name  : SDA temperature
+      - entity: sensor.status_sdb
+        name  : SDB status
+      - entity: sensor.status_smart_sdb
+        name  : SDB SMART status
+      - entity: sensor.temperature_sdb
+        name  : SDB temperature
+      - entity: sensor.status_volume_1
+        name  : Volume 1
+      - entity: sensor.volume_used_volume_1
+        name  : Volume 1 used
+
+
+  - type: entities
+    title: Solar panels grandparents
+    show_header_toggle: false
+    entities:
+      - type: custom:fold-entity-row
+        head:
+            type  : sensor
+            entity: sensor.solar_actual_power
+            name  : Actual power
+        items:
+          - entity: sensor.solar_energy_today
+            name  : Today's energy
+          - entity: sensor.solar_energy_total
+            name  : Total energy
+  - type: entities
+    title: Test
+    show_header_toggle: false
+    entities:
+      - input_number.test_slider

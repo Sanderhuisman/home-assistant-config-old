@@ -1,0 +1,464 @@
+path: server
+title: Server
+icon: mdi:server
+cards:
+  - type: entities
+    title: Downloads
+    show_header_toggle: false
+    entities:
+      - sensor.kotnetnas_transmission_status
+      - sensor.kotnetnas_transmission_active_torrents
+      - sensor.kotnetnas_transmission_completed_torrents
+      - sensor.kotnetnas_transmission_total_torrents
+      - sensor.kotnetnas_transmission_started_torrents
+      - sensor.kotnetnas_transmission_paused_torrents
+      - sensor.kotnetnas_transmission_up_speed
+      - sensor.kotnetnas_transmission_down_speed
+
+  - type: entities
+    title: System
+    show_header_toggle: false
+    entities:
+      - sensor.swap_use
+      - sensor.swap_free
+      - sensor.last_boot
+      - sensor.processor_use
+      - sensor.cpu
+      - sensor.disk_use_percent
+      - sensor.memory_free
+      - sensor.memory_use
+      - sensor.memory_use_percent
+
+  - type: entities
+    title: Docker
+    show_header_toggle: false
+    entities:
+      - entity: sensor.docker_version
+        name  : Version
+
+  - type: entities
+    title: Home Assistant
+    show_header_toggle: false
+    entities:
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_homeassistant_homeassistant_1_status
+            name  : Home-Assistant
+        items:
+          - entity: sensor.docker_homeassistant_homeassistant_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_homeassistant_homeassistant_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_homeassistant_homeassistant_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_homeassistant_homeassistant_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_homeassistant_homeassistant_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_homeassistant_homeassistant_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_homeassistant_database_1_status
+            name  : Database
+        items:
+          - entity: sensor.docker_homeassistant_database_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_homeassistant_database_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_homeassistant_database_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_homeassistant_database_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_homeassistant_database_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_homeassistant_database_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_homeassistant_mosquitto_1_status
+            name  : Mosquitto
+        items:
+          - entity: sensor.docker_homeassistant_mosquitto_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_homeassistant_mosquitto_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_homeassistant_mosquitto_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_homeassistant_mosquitto_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_homeassistant_mosquitto_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_homeassistant_mosquitto_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_homeassistant_tasmoadmin_1_status
+            name  : TasmoAdmin
+        items:
+          - entity: switch.docker_homeassistant_tasmoadmin_1
+            name  : Enable
+          - entity: sensor.docker_homeassistant_tasmoadmin_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_homeassistant_tasmoadmin_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_homeassistant_tasmoadmin_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_homeassistant_tasmoadmin_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_homeassistant_tasmoadmin_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_homeassistant_tasmoadmin_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_homeassistant_appdaemon_1_status
+            name  : AppDeamon
+        items:
+          - entity: switch.docker_homeassistant_appdaemon_1
+            name  : Enable
+          - entity: sensor.docker_homeassistant_appdaemon_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_homeassistant_appdaemon_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_homeassistant_appdaemon_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_homeassistant_appdaemon_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_homeassistant_appdaemon_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_homeassistant_appdaemon_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_homeassistant_telegraf_1_status
+            name  : Telegraf
+        items:
+          - entity: switch.docker_homeassistant_telegraf_1
+            name  : Enable
+          - entity: sensor.docker_homeassistant_telegraf_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_homeassistant_telegraf_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_homeassistant_telegraf_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_homeassistant_telegraf_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_homeassistant_telegraf_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_homeassistant_telegraf_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_homeassistant_kapacitor_1_status
+            name  : Kapacitor
+        items:
+          - entity: switch.docker_homeassistant_kapacitor_1
+            name  : Enable
+          - entity: sensor.docker_homeassistant_kapacitor_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_homeassistant_kapacitor_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_homeassistant_kapacitor_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_homeassistant_kapacitor_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_homeassistant_kapacitor_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_homeassistant_kapacitor_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_homeassistant_chronograf_1_status
+            name  : Chronograf
+        items:
+          - entity: switch.docker_homeassistant_chronograf_1
+            name  : Enable
+          - entity: sensor.docker_homeassistant_chronograf_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_homeassistant_chronograf_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_homeassistant_chronograf_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_homeassistant_chronograf_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_homeassistant_chronograf_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_homeassistant_chronograf_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_homeassistant_influxdb_1_status
+            name  : InfluxDB
+        items:
+          - entity: switch.docker_homeassistant_influxdb_1
+            name  : Enable
+          - entity: sensor.docker_homeassistant_influxdb_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_homeassistant_influxdb_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_homeassistant_influxdb_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_homeassistant_influxdb_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_homeassistant_influxdb_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_homeassistant_influxdb_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_homeassistant_grafana_1_status
+            name  : Grafana
+        items:
+          - entity: switch.docker_homeassistant_grafana_1
+            name  : Enable
+          - entity: sensor.docker_homeassistant_grafana_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_homeassistant_grafana_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_homeassistant_grafana_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_homeassistant_grafana_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_homeassistant_grafana_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_homeassistant_grafana_1_network_total_down
+            name  : Network downstream
+
+  - type: entities
+    title: Management
+    show_header_toggle: false
+    entities:
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_management_portainer_1_status
+            name  : Portainer
+        items:
+          - entity: switch.docker_management_portainer_1
+            name  : Enable
+          - entity: sensor.docker_management_portainer_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_management_portainer_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_management_portainer_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_management_portainer_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_management_portainer_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_management_portainer_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_management_watchtower_1_status
+            name  : Watchtower
+        items:
+          - entity: switch.docker_management_watchtower_1
+            name  : Enable
+          - entity: sensor.docker_management_watchtower_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_management_watchtower_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_management_watchtower_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_management_watchtower_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_management_watchtower_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_management_watchtower_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_management_traefik_1_status
+            name  : Traefik
+        items:
+          - entity: switch.docker_management_traefik_1
+            name  : Enable
+          - entity: sensor.docker_management_traefik_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_management_traefik_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_management_traefik_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_management_traefik_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_management_traefik_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_management_traefik_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_management_pihole_1_status
+            name  : Pi-hole
+        items:
+          - entity: switch.docker_management_pihole_1
+            name  : Enable
+          - entity: sensor.docker_management_pihole_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_management_pihole_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_management_pihole_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_management_pihole_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_management_pihole_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_management_pihole_1_network_total_down
+            name  : Network downstream
+
+  - type: entities
+    title: Cloud
+    show_header_toggle: false
+    entities:
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_cloud_nextcloud_1_status
+            name  : NextCloud
+        items:
+          - entity: switch.docker_cloud_nextcloud_1
+            name  : Enable
+          - entity: sensor.docker_cloud_nextcloud_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_cloud_nextcloud_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_cloud_nextcloud_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_cloud_nextcloud_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_cloud_nextcloud_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_cloud_nextcloud_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_cloud_database_1_status
+            name  : Database
+        items:
+          - entity: switch.docker_cloud_database_1
+            name  : Enable
+          - entity: sensor.docker_cloud_database_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_cloud_database_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_cloud_database_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_cloud_database_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_cloud_database_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_cloud_database_1_network_total_down
+            name  : Network downstream
+
+  - type: entities
+    title: Media
+    show_header_toggle: false
+    entities:
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_media_transmission_1_status
+            name  : Transmission
+        items:
+          - entity: switch.docker_media_transmission_1
+            name  : Enable
+          - entity: sensor.docker_media_transmission_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_media_transmission_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_media_transmission_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_media_transmission_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_media_transmission_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_media_transmission_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_media_transmission_proxy_1_status
+            name  : Transmission Proxy
+        items:
+          - entity: switch.docker_media_transmission_proxy_1
+            name  : Enable
+          - entity: sensor.docker_media_transmission_proxy_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_media_transmission_proxy_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_media_transmission_proxy_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_media_transmission_proxy_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_media_transmission_proxy_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_media_transmission_proxy_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_media_sickchill_1_status
+            name  : SickChill
+        items:
+          - entity: switch.docker_media_sickchill_1
+            name  : Enable
+          - entity: sensor.docker_media_sickchill_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_media_sickchill_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_media_sickchill_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_media_sickchill_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_media_sickchill_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_media_sickchill_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_media_couchpotato_1_status
+            name  : CouchPotato
+        items:
+          - entity: switch.docker_media_couchpotato_1
+            name  : Enable
+          - entity: sensor.docker_media_couchpotato_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_media_couchpotato_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_media_couchpotato_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_media_couchpotato_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_media_couchpotato_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_media_couchpotato_1_network_total_down
+            name  : Network downstream
+      - type: custom:fold-entity-row
+        head:
+            entity: sensor.docker_media_plex_1_status
+            name  : Plex
+        items:
+          - entity: switch.docker_media_plex_1
+            name  : Enable
+          - entity: sensor.docker_media_plex_1_cpu_use
+            name  : CPU use
+          - entity: sensor.docker_media_plex_1_memory_use_percent
+            name  : Memory use
+          - entity: sensor.docker_media_plex_1_network_speed_up
+            name  : Network speed upstream
+          - entity: sensor.docker_media_plex_1_network_speed_down
+            name  : Network speed downstream
+          - entity: sensor.docker_media_plex_1_network_total_up
+            name  : Network upstream
+          - entity: sensor.docker_media_plex_1_network_total_down
+            name  : Network downstream
+
+  - type: entities
+    title: Pi-hole
+    show_header_toggle: false
+    entities:
+      - sensor.pi_hole_ads_blocked_today
+      - sensor.pi_hole_ads_percentage_blocked_today
+      - sensor.pi_hole_dns_queries_cached
+      - sensor.pi_hole_dns_queries_forwarded
+      - sensor.pi_hole_dns_queries_today
+      - sensor.pi_hole_dns_unique_clients
+      - sensor.pi_hole_dns_unique_domains
+      - sensor.pi_hole_domains_blocked
+      - sensor.pi_hole_seen_clients

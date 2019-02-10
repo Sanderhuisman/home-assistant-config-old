@@ -1,0 +1,129 @@
+sensor:
+  # ESP
+  - platform              : mqtt
+    name                  : sander_climate_temperature
+    state_topic           : '/sander/temperature'
+    unit_of_measurement   : '°C'
+    value_template        : '{{ value_json.temperature }}'
+  - platform              : mqtt
+    name                  : sander_climate_humidity
+    state_topic           : '/sander/temperature'
+    unit_of_measurement   : '%'
+    value_template        : '{{ value_json.humidity }}'
+
+  # PostNL
+  - platform              : postnl
+    username              : !secret sander_postnl_username
+    password              : !secret sander_postnl_password
+
+  # Plex
+  - platform              : plex
+    host                  : !secret sander_plex_host
+    port                  : !secret sander_plex_port
+    username              : !secret sander_plex_username
+    password              : !secret sander_plex_password
+    token                 : !secret sander_plex_token
+    ssl                   : false
+
+  # Opa en Oma
+  - platform              : solarportal
+    host                  : !secret sander_solar_host
+    port                  : !secret sander_solar_port
+    username              : !secret sander_solar_username
+    password              : !secret sander_solar_password
+    scan_interval         : 30
+    resources:
+      - actualpower
+      - energytoday
+      - energytotal
+
+  - platform              : synologydsm
+    host                  : !secret sander_dsm_host
+    username              : !secret sander_dsm_username
+    password              : !secret sander_dsm_password
+    monitored_conditions:
+      - cpu_total_load
+      - memory_real_usage
+      - network_up
+      - network_down
+      - disk_smart_status
+      - disk_status
+      - disk_temp
+      - volume_status
+      - volume_percentage_used
+
+  - platform: nederlandse_spoorwegen
+    email                 : !secret sander_ns_email
+    password              : !secret sander_ns_key
+    routes:
+      - name  : Enschede-Groningen
+        from  : Es
+        to    : Gn
+      - name  : Groningen-Zwolle-Enschede
+        from  : Gn
+        to    : Es
+        # via   : Zl
+
+switch:
+  - platform: mqtt
+    name                  : sander-sw1
+    state_topic           : "stat/sonoff-sw1/POWER"
+    command_topic         : "cmnd/sonoff-sw1/POWER"
+    availability_topic    : "tele/sonoff-sw1/LWT"
+    qos                   : 1
+    payload_on            : "ON"
+    payload_off           : "OFF"
+    payload_available     : "Online"
+    payload_not_available : "Offline"
+    retain                : true
+
+hue:
+  bridges:
+    - host                : !secret sander_hue_host
+
+cast:
+  media_player:
+    - host                : !secret sander_chromecast_host
+    - host                : !secret sander_googlehome_host
+
+input_boolean:
+  master:
+    name                  : Switch automations and light off
+    initial               : off
+    icon                  : mdi:settings
+
+google_assistant:
+  project_id              : !secret sander_google_project_id
+  api_key                 : !secret sander_google_api_key
+  expose_by_default       : false
+  exposed_domains:
+    - switch
+    - light
+    - group
+  entity_config:
+    light.bed:
+      name      : bed light
+      expose    : true
+      room      : "Room Sander"
+    light.desk:
+      name      : desk light
+      expose    : true
+      room      : "Room Sander"
+    light.table:
+      name      : table light
+      expose    : true
+      room      : "Room Sander"
+
+    switch.sander_sw1:
+      name      : Christmas tree
+      expose    : true
+      room      : "Room Sander"
+
+    light.hall_christmas_lights:
+      name      : Hallway lights
+      expose    : true
+      room      : "Hallway"
+    light.kitchen_christmas_lights:
+      name      : Kitchen lights
+      expose    : true
+      room      : "Kitchen"

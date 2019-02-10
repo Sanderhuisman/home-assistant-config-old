@@ -1,0 +1,17 @@
+resources:
+  - url: /local/card-tools.js
+    type: js
+  - url: /local/fold-entity-row.js
+    type: js
+  - url: /local/slider-entity-row.js
+    type: js
+
+title: HuizePD
+views:
+  - !include lovelace/home.yaml
+  - !include lovelace/hallway.yaml
+  - !include lovelace/kitchen.yaml
+  - !include lovelace/sander.yaml
+  - !include lovelace/steven.yaml
+  - !include lovelace/server.yaml
+  - !include lovelace/network.yaml

@@ -1,0 +1,19 @@
+recorder:
+  db_url: !secret homeassistant_database
+
+  # The number of days of history to keep in the recorder database
+  purge_keep_days: 7
+
+  # How often (in days) the purge task runs
+  purge_interval: 1
+
+  include:
+    domains:
+      - sensor
+      - device_tracker
+
+  exclude:
+    entities:
+     - sensor.enschede_groningen
+     - sensor.groningen_zwolle_enschede
+     - sensor.postnl

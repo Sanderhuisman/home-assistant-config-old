@@ -1,0 +1,22 @@
+path: steven
+title: Steven
+cards:
+  - type: entities
+    title: Lights
+    entities:
+      - light.steven_ledstrip
+  - type: glance
+    title: Climate
+    entities:
+      - entity: sensor.steven_climate_temperature
+        name: Temperature
+      - entity: sensor.steven_climate_pressure
+        name: Pressure
+  # - type: entity-filter
+  #   entities:
+  #     - media_player.samsung_tv_remote
+  #   state_filter:
+  #     - 'playing'
+  #   card:
+  #     type: media-control
+  #     entity: media_player.samsung_tv_remote

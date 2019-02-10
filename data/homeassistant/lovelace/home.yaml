@@ -1,0 +1,144 @@
+path: home
+title: Home
+tab_icon: mdi:home-assistant
+cards:
+  - type: entities
+    show_header_toggle: false
+    title: Time
+    entities:
+      - sensor.date_time
+  - type: shopping-list
+    title: Shopping List
+  - type: entities
+    title: Lights
+    entities:
+      - light.hall_christmas_lights
+      - light.kitchen_christmas_lights
+  - type: entities
+    title: Eetlijst
+    show_header_toggle: false
+    entities:
+      - sensor.huize_pd_steven
+      - sensor.huize_pd_sander
+      - sensor.huize_pd_kirsten
+      - sensor.huize_pd_thomas
+      - sensor.huize_pd_linda
+      - sensor.huize_pd_pascalle
+
+  - type: vertical-stack
+    cards:
+      - type: entity-filter
+        entities:
+          - device_tracker.kirsten_android
+          - device_tracker.jochem_iphone
+          - device_tracker.linda_android
+          - device_tracker.iphonevansven
+          - device_tracker.pascalle_iphone
+          - device_tracker.iphonevanbouke
+          - device_tracker.sander_sander
+          - device_tracker.lys_iphone
+          - device_tracker.steven_android
+          - device_tracker.thomas_android
+          - device_tracker.daan_iphone
+        state_filter:
+          - home
+        card:
+          type: glance
+          show_state: false
+          title: People at home
+      - type: entity-filter
+        entities:
+          - device_tracker.kirsten_android
+          - device_tracker.jochem_iphone
+          - device_tracker.linda_android
+          - device_tracker.iphonevansven
+          - device_tracker.pascalle_iphone
+          - device_tracker.iphonevanbouke
+          - device_tracker.sander_sander
+          - device_tracker.lys_iphone
+          - device_tracker.steven_android
+          - device_tracker.thomas_android
+          - device_tracker.daan_iphone
+        state_filter:
+          - not_home
+        card:
+          type: glance
+          show_state: false
+          title: People away
+
+  - type: weather-forecast
+    entity: weather.br_unknown_station
+  - type: entities
+    title: Climate
+    show_header_toggle: false
+    entities:
+      - sensor.hall_climate_temperature
+      - sensor.hall_climate_humidity
+      - sensor.sander_climate_temperature
+      - sensor.sander_climate_humidity
+      - sensor.steven_climate_temperature
+      - sensor.steven_climate_pressure
+
+  - type: entities
+    title: Buienradar
+    show_header_toggle: false
+    entities:
+      - sensor.br_ground_temperature
+      - sensor.br_temperature
+      - sensor.br_humidity
+      - sensor.br_irradiance
+      - sensor.br_precipitation
+      - sensor.br_pressure
+      - sensor.br_visibility
+      - sensor.br_wind_direction
+      - sensor.br_wind_speed
+
+  - type: entities
+    title: Sun
+    show_header_toggle: false
+    entities:
+      - sun.sun
+  - type: glance
+    title: Particles
+    entities:
+      - entity: sensor.luftdaten_15307_p1
+        name: PM10
+      - entity: sensor.luftdaten_15307_p2
+        name: PM2.5
+  - type: iframe
+    title: Weather radar
+    url: https://embed.windy.com/embed2.html?lat=52.233&lon=6.856&zoom=11&level=surface&overlay=radar&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=52.233&detailLon=6.856&metricWind=default&metricTemp=default&radarRange=-1
+  - type: entities
+    title: Camera
+    show_header_toggle: false
+    entities:
+      - camera.huize_pd_camera
+  - type: entities
+    title: Automations
+    entities:
+      - automation.lights_on
+      - automation.lights_off
+  - type: entities
+    title: ISS
+    show_header_toggle: false
+    entities:
+      - binary_sensor.iss
+      - sensor.iss_next_rise
+
+  - type: entities
+    title: Switches
+    show_header_toggle: false
+    entities:
+      - type: custom:fold-entity-row
+        head:
+            entity: switch.blitzwolf_wasmachine_state
+            name  : Wasmachine
+        items:
+          - entity: sensor.blitzwolf_wasmachine_power
+            name: Power
+          - entity: sensor.blitzwolf_wasmachine_voltage
+            name: Voltage
+          - entity: sensor.blitzwolf_wasmachine_current
+            name: Current
+          - entity: sensor.blitzwolf_wasmachine_power_factor
+            name: Power factor
