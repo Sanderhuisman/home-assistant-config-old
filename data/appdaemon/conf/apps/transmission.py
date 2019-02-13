@@ -15,11 +15,14 @@ class TransmissionMonitor(hass.Hass):
             self.listen_event(self.event_callback, event='transmission_downloaded_torrent'))
 
     def event_callback(self, event_name, data, kwargs):
-        self.notify("Event {} fired with data".format(event_name))
+        try:
+            self.log("Event {} fired with data {}".format(event_name, kwargs))
+        except:
+            self.log("Not a float")
 
         for notifier in self.notifiers:
-            self.notify("Transmission event: {} {}".format(
-                event_name, data['name']), name=notifier)
+            self.notify("Transmission event: {}".format(
+                event_name), name=notifier)
 
     def terminate(self):
         for listen_event_handle in self.listen_event_handle_list:

@@ -42,8 +42,7 @@ class WasmachineMonitor(hass.Hass):
                 self.isWaitingHandle = None
 
     def notify_device_on(self):
-        for notifier in self.notifiers:
-            self.notify("Wasmachine ready", name=notifier)
+        self._notify("Wasmachine started")
 
     def notify_device_off(self, kwargs):
         """Notify User that device is off. This may get cancelled if it turns on again in the meantime"""
@@ -53,8 +52,11 @@ class WasmachineMonitor(hass.Hass):
         self.log("Setting isWaitingHandle to: {}".format(self.isWaitingHandle))
         self.log("Notifying user")
 
+        self._notify("Wasmachine ready")
+
+    def _notify(self, message):
         for notifier in self.notifiers:
-            self.notify("Wasmachine ready", name=notifier)
+            self.notify(message, name=notifier)
 
     def terminate(self):
         for timer_handle in self.timer_handle_list:
