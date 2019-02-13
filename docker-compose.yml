@@ -131,7 +131,7 @@ services:
       - "traefik.protocol=http"
 
   homeassistant:
-    image: homeassistant/home-assistant:0.87.0
+    image: homeassistant/home-assistant:0.87.1
     restart: unless-stopped
     volumes:
       - /etc/timezone:/etc/timezone:ro
