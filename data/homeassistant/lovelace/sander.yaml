@@ -102,8 +102,3 @@ cards:
             name  : Today's energy
           - entity: sensor.solar_energy_total
             name  : Total energy
-  - type: entities
-    title: Test
-    show_header_toggle: false
-    entities:
-      - input_number.test_slider

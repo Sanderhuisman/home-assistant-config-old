@@ -14,6 +14,7 @@ recorder:
 
   exclude:
     entities:
+     - sensor.date_time
      - sensor.enschede_groningen
      - sensor.groningen_zwolle_enschede
      - sensor.postnl

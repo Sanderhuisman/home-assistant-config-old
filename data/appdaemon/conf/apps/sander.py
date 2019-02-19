@@ -77,19 +77,19 @@ class Sander(hass.Hass):
                     self.friendly_name(entity), new))
 
         if changed:
-            if self.dark == True and self.home:
-                self.log("Turn light on")
+            pass
+        #     if self.dark == True and self.home:
+        #         self.log("Turn light on")
 
-                self._notify("Turn light on")
-            else:
-                self.log("Turn light off")
+        #         self._notify("Turn light on")
+        #     else:
+        #         self.log("Turn light off")
 
-                self._notify("Turn light off")
+        #         self._notify("Turn light off")
 
     def _notify(self, message):
         for notifier in self.notifiers:
             self.notify(message, name=notifier)
-        pass
 
     def terminate(self):
         for listen_state_handle in self.listen_state_handle_list:

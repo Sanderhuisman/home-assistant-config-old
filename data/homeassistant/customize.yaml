@@ -1,47 +1,57 @@
 light.steven_ledstrip:
   friendly_name: LED strip
+
+sensor.steven_climate_temperature:
+  friendly_name: Temperature Steven
+sensor.steven_climate_pressure:
+  friendly_name: Pressure Steven
+  icon: mdi:gauge
+media_player.samsung_tv_remote:
+  friendly_name: TV Steven
+
 sensor.sander_climate_temperature:
   friendly_name: Temperature Sander
 sensor.sander_climate_humidity:
   friendly_name: Humidity Sander
   icon: mdi:water-percent
-sensor.steven_climate_pressure:
-  friendly_name: Pressure Steven
-  icon: mdi:gauge
-sensor.steven_climate_temperature:
-  friendly_name: Temperature Steven
-history_graph.climate_graph:
-  friendly_name: Climate graph
-history_graph.sander_climate_graph:
-  friendly_name: Climate graph Sander
-history_graph.steven_climate_graph:
-  friendly_name: Climate graph Steven
-media_player.samsung_tv_remote:
-  friendly_name: TV Steven
-light.kitchen_christmas_lights:
-  friendly_name: Kitchen Christmas Lights
-light.hall_christmas_lights:
-  friendly_name: Hallway Christmas Lights
+
+
+sensor.hall_climate_temperature:
+  friendly_name: Temperature Hallway
 sensor.hall_climate_humidity:
   friendly_name: Humidity Hallway
   icon: mdi:water-percent
-sensor.hall_climate_temperature:
-  friendly_name: Temperature Hallway
-history_graph.hall_climate_graph:
-  friendly_name: Climate Graph Hallway
+light.hall_christmas_lights:
+  friendly_name: Hallway Christmas Lights
+light.kitchen_christmas_lights:
+  friendly_name: Kitchen Christmas Lights
+
+
 configurator.axis00408c93b587local_16925420135:
   hidden: true
   homebridge_hidden: true
-sensor.kotnetnas_transmission_active_torrents:
-  friendly_name: Transmission Active Torrents
-sensor.kotnetnas_transmission_down_speed:
-  friendly_name: Transmission Down Speed
-sensor.kotnetnas_transmission_up_speed:
-  friendly_name: Transmission Up Speed
+
 sensor.kotnetnas_transmission_status:
   friendly_name: Transmission Status
+sensor.kotnetnas_transmission_active_torrents:
+  friendly_name: Transmission Active Torrents
+sensor.kotnetnas_transmission_completed_torrents:
+  friendly_name: Transmission Completed Torrents
+sensor.kotnetnas_transmission_total_torrents:
+  friendly_name: Transmission Total Torrents
+sensor.kotnetnas_transmission_started_torrents:
+  friendly_name: Transmission Started Torrents
+sensor.kotnetnas_transmission_paused_torrents:
+  friendly_name: Transmission Paused Torrents
+sensor.kotnetnas_transmission_up_speed:
+  friendly_name: Transmission Up Speed
+sensor.kotnetnas_transmission_down_speed:
+  friendly_name: Transmission Down Speed
+
+
 device_tracker.lys_iphone:
   friendly_name: Lys
+
 sensor.br_ground_temperature:
   friendly_name: Ground temperature
 sensor.br_wind_speed:
@@ -58,8 +68,9 @@ sensor.br_irradiance:
   friendly_name: Irradiance
 sensor.br_precipitation:
   friendly_name: Precipitation
-sensor.disk_use_percent:
-  friendly_name: Disk use (percent)
+sensor.br_visibility:
+  friendly_name: Visibility
+
 sensor.huize_pd_kirsten:
   friendly_name: Kirsten
 sensor.huize_pd_sander:
@@ -72,3 +83,6 @@ sensor.huize_pd_steven:
   friendly_name: Steven
 sensor.huize_pd_pascalle:
   friendly_name: Pascalle
+
+sensor.disk_use_percent:
+  friendly_name: Disk use (percent)

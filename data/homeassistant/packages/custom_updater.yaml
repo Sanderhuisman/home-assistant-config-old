@@ -1,0 +1,4 @@
+# https://github.com/custom-components/custom_updater
+custom_updater:
+  component_urls:
+    - https://raw.githubusercontent.com/Sanderhuisman/home-assistant-custom-components/master/custom_updater.json

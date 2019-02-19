@@ -6,7 +6,11 @@ cards:
     title: Router
     show_header_toggle: false
     entities:
-      - sensor.asuswrt_download
-      - sensor.asuswrt_download_speed
-      - sensor.asuswrt_upload
-      - sensor.asuswrt_upload_speed
+      - entity: sensor.asuswrt_upload
+        name: Upload
+      - entity: sensor.asuswrt_download
+        name: Download
+      - entity: sensor.asuswrt_upload_speed
+        name: Upload Speed
+      - entity: sensor.asuswrt_download_speed
+        name: Download Speed

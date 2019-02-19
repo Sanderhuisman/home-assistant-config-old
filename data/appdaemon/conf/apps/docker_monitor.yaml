@@ -1,0 +1,6 @@
+docker_monitor:
+  module        : docker_monitor
+  class         : DockerMonitor
+
+  notifiers:
+    - telegram_sander

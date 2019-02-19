@@ -27,18 +27,19 @@ sensor:
       - unique_domains
       - clients_ever_seen
 
-# docker_monitor:
-#   containers:
-#     - homeassistant_homeassistant_1
-#     - homeassistant_database_1
-#     - homeassistant_mosquitto_1
-#     - homeassistant_tasmoadmin_1
-#     - homeassistant_appdaemon_1
-#     - homeassistant_telegraf_1
-#     - homeassistant_kapacitor_1
-#     - homeassistant_chronograf_1
-#     - homeassistant_influxdb_1
-#     - homeassistant_grafana_1
+docker_monitor:
+  events: true
+  containers:
+    - homeassistant_homeassistant_1
+    - homeassistant_database_1
+    - homeassistant_mosquitto_1
+    - homeassistant_tasmoadmin_1
+    - homeassistant_appdaemon_1
+    - homeassistant_telegraf_1
+    - homeassistant_kapacitor_1
+    - homeassistant_chronograf_1
+    - homeassistant_influxdb_1
+    - homeassistant_grafana_1
 
 #     - management_portainer_1
 #     - management_watchtower_1
@@ -53,15 +54,15 @@ sensor:
 
 #     - cloud_nextcloud_1
 #     - cloud_database_1
-#   monitored_conditions:
-#     - utilization_version
-#     - container_status
-#     - container_cpu_percentage_usage
-#     - container_memory_percentage_usage
-#     - container_network_speed_up
-#     - container_network_speed_down
-#     - container_network_total_up
-#     - container_network_total_down
+  monitored_conditions:
+    - utilization_version
+    - container_status
+    - container_cpu_percentage_usage
+    - container_memory_percentage_usage
+    # - container_network_speed_up
+    # - container_network_speed_down
+    # - container_network_total_up
+    # - container_network_total_down
 
 # media_player:
 #   - platform: plex

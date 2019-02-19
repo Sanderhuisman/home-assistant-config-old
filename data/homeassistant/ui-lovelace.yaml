@@ -5,6 +5,9 @@ resources:
     type: js
   - url: /local/slider-entity-row.js
     type: js
+  # https://github.com/custom-cards/tracker-card
+  - url: /customcards/github/custom-cards/tracker-card.js?track=true
+    type: module
 
 title: HuizePD
 views:
@@ -15,3 +18,4 @@ views:
   - !include lovelace/steven.yaml
   - !include lovelace/server.yaml
   - !include lovelace/network.yaml
+  - !include lovelace/homeassistant.yaml
