@@ -15,6 +15,10 @@ sensor.sander_climate_humidity:
   friendly_name: Humidity Sander
   icon: mdi:water-percent
 
+sensor.plex:
+  icon: mdi:plex
+switch.sander_sw1:
+  icon: mdi:pine-tree
 
 sensor.hall_climate_temperature:
   friendly_name: Temperature Hallway
@@ -33,10 +37,13 @@ configurator.axis00408c93b587local_16925420135:
 
 sensor.kotnetnas_transmission_status:
   friendly_name: Transmission Status
+  icon: mdi:information-outline
 sensor.kotnetnas_transmission_active_torrents:
   friendly_name: Transmission Active Torrents
+  icon: mdi:file-download-outline
 sensor.kotnetnas_transmission_completed_torrents:
   friendly_name: Transmission Completed Torrents
+  icon: mdi:file-download
 sensor.kotnetnas_transmission_total_torrents:
   friendly_name: Transmission Total Torrents
 sensor.kotnetnas_transmission_started_torrents:
@@ -45,8 +52,19 @@ sensor.kotnetnas_transmission_paused_torrents:
   friendly_name: Transmission Paused Torrents
 sensor.kotnetnas_transmission_up_speed:
   friendly_name: Transmission Up Speed
+  icon: mdi:upload
 sensor.kotnetnas_transmission_down_speed:
   friendly_name: Transmission Down Speed
+  icon: mdi:download
+
+sensor.asuswrt_upload:
+  icon: mdi:upload
+sensor.asuswrt_download:
+  icon: mdi:download
+sensor.asuswrt_upload_speed:
+  icon: mdi:upload
+sensor.asuswrt_download_speed:
+  icon: mdi:download
 
 
 device_tracker.lys_iphone:

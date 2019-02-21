@@ -16,6 +16,13 @@ cards:
       - type: custom:slider-entity-row
         entity: light.table
 
+  - type: entities
+    title: Hue
+    show_header_toggle: false
+    entities:
+      - sensor.hue_dimmer_switch_1
+      - sensor.hue_dimmer_switch_1_battery
+
   - type: horizontal-stack
     title: Climate
     cards:

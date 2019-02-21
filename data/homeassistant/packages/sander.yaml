@@ -64,6 +64,41 @@ sensor:
         to    : Es
         # via   : Zl
 
+  - platform: hue
+  - platform: template
+    sensors:
+      hue_dimmer_switch_1_battery:
+        friendly_name: "Dimmer Battery"
+        unit_of_measurement: '%'
+        icon_template: >
+          {% if state_attr('sensor.hue_dimmer_switch_1', 'battery') %}
+            {% if state_attr('sensor.hue_dimmer_switch_1', 'battery') >= 98 %}
+              mdi:battery
+            {% elif state_attr('sensor.hue_dimmer_switch_1', 'battery') >= 85 %}
+              mdi:battery-90
+            {% elif state_attr('sensor.hue_dimmer_switch_1', 'battery') >= 75 %}
+              mdi:battery-80
+            {% elif state_attr('sensor.hue_dimmer_switch_1', 'battery') >= 65 %}
+              mdi:battery-70
+            {% elif state_attr('sensor.hue_dimmer_switch_1', 'battery') >= 50 %}
+              mdi:battery-50
+            {% elif state_attr('sensor.hue_dimmer_switch_1', 'battery') >= 35 %}
+              mdi:battery-30
+            {% elif state_attr('sensor.hue_dimmer_switch_1', 'battery') >= 25 %}
+              mdi:battery-20
+            {% elif state_attr('sensor.hue_dimmer_switch_1', 'battery') <= 15 %}
+              mdi:battery-10
+            {% else %}
+              mdi:battery-outline
+            {% endif %}
+          {% endif %}
+        value_template: "{{ state_attr('sensor.hue_dimmer_switch_1', 'battery') }}"
+
+binary_sensor:
+  - platform: hue
+device_tracker:
+  - platform: hue
+
 switch:
   - platform: mqtt
     name                  : sander-sw1
