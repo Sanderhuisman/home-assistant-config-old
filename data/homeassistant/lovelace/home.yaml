@@ -118,20 +118,13 @@ cards:
     camera_image: camera.huize_pd_camera
 
   - type: entities
-    title: ISS
-    show_header_toggle: false
-    entities:
-      - binary_sensor.iss
-      - sensor.iss_next_rise
-
-  - type: entities
     title: Switches
     show_header_toggle: false
     entities:
       - type: custom:fold-entity-row
         head:
-            entity: switch.blitzwolf_wasmachine_state
-            name  : Wasmachine
+          entity: switch.blitzwolf_wasmachine_state
+          name: Wasmachine
         items:
           - entity: sensor.blitzwolf_wasmachine_power
             name: Power
@@ -141,7 +134,6 @@ cards:
             name: Current
           - entity: sensor.blitzwolf_wasmachine_power_factor
             name: Power factor
-
   # - type: sensor
   #   entity: sensor.p2000
   #   name: P2000 Amsterdam

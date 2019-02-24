@@ -15,6 +15,8 @@ cards:
         entity: light.desk
       - type: custom:slider-entity-row
         entity: light.table
+      - entity: switch.sander_sw1
+        name: Christmas Tree
 
   - type: entities
     title: Hue
@@ -26,83 +28,126 @@ cards:
   - type: horizontal-stack
     title: Climate
     cards:
-    - type: sensor
-      name        : Temperature
-      entity      : sensor.sander_climate_temperature
-      graph       : line
-    - type: sensor
-      name        : Humidity
-      entity      : sensor.sander_climate_humidity
-      graph       : line
+      - type: sensor
+        name: Temperature
+        entity: sensor.sander_climate_temperature
+        graph: line
+      - type: sensor
+        name: Humidity
+        entity: sensor.sander_climate_humidity
+        graph: line
 
-  - type: entities
-    show_header_toggle: false
-    title: NS
-    entities:
-      - sensor.enschede_groningen
-      - sensor.groningen_zwolle_enschede
+  - type: custom:vertical-stack-in-card
+    title: Space
+    cards:
+      - type: sensor
+        name: Enschede-Groningen
+        entity: sensor.enschede_groningen
+      - type: sensor
+        name: Groningen-Enschede
+        entity: sensor.groningen_zwolle_enschede
 
   - type: sensor
     name: PostNL
     entity: sensor.postnl
 
-  - type: sensor
-    entity: sensor.spacelaunch
-    name: Space Launches
-
-  - type: vertical-stack
+  - type: custom:vertical-stack-in-card
+    title: Space
     cards:
-      - type: media-control
+      - type: sensor
+        entity: sensor.spacelaunch
+        name: Launches
+      - type: sensor
+        entity: sensor.iss_next_rise
+        name: ISS
+
+  - type: custom:vertical-stack-in-card
+    title: Media
+    cards:
+      - type: sensor
+        name: Plex
+        entity: sensor.plex
+      # - type: media-control
+      - type: custom:mini-media-player
         entity: media_player.sander_chromecast
-      - type: media-control
+      # - type: media-control
+      - type: custom:mini-media-player
         entity: media_player.sander_home_mini
 
-  - type: sensor
-    name: Plex
-    entity: sensor.plex
-
-  - type: entities
-    title: Switches
-    show_header_toggle: false
-    entities:
-      - entity: switch.sander_sw1
-        name: Christmas Tree
-
-  - type: glance
+  - type: custom:vertical-stack-in-card
     title: DSM
-    entities:
-      - entity: sensor.cpu_load_total
-        name  : CPU load
-      - entity: sensor.memory_usage_real
-        name  : Memory use
-      - entity: sensor.network_up
-        name  : Network up
-      - entity: sensor.network_down
-        name  : Network down
-      - entity: sensor.status_sda
-        name  : SDA status
-      - entity: sensor.status_smart_sda
-        name  : SDA SMART status
-      - entity: sensor.temperature_sda
-        name  : SDA temperature
-      - entity: sensor.status_sdb
-        name  : SDB status
-      - entity: sensor.status_smart_sdb
-        name  : SDB SMART status
-      - entity: sensor.temperature_sdb
-        name  : SDB temperature
-      - entity: sensor.status_volume_1
-        name  : Volume 1
-      - entity: sensor.volume_used_volume_1
-        name  : Volume 1 used
+    cards:
+      - type: horizontal-stack
+        title: Usage
+        cards:
+          - type: sensor
+            name: CPU
+            entity: sensor.cpu_load_total
+            graph: line
+          - type: sensor
+            name: Memory
+            entity: sensor.memory_usage_real
+            graph: line
+
+      - type: horizontal-stack
+        title: Network
+        cards:
+          - type: sensor
+            name: Up
+            entity: sensor.network_up
+            graph: line
+          - type: sensor
+            name: Down
+            entity: sensor.network_down
+            graph: line
+
+      - type: entities
+        show_header_toggle: false
+        # title: SDA
+        entities:
+          - type: custom:fold-entity-row
+            head:
+              entity: sensor.status_sda
+              name: SDA Status
+            items:
+              - entity: sensor.status_smart_sda
+                name: SMART status
+              - entity: sensor.temperature_sda
+                name: Temperature
+      - type: entities
+        show_header_toggle: false
+        # title: SDB
+        entities:
+          - type: custom:fold-entity-row
+            head:
+              entity: sensor.status_sda
+              name: SDB Status
+            items:
+              - entity: sensor.status_smart_sda
+                name: SMART status
+              - entity: sensor.temperature_sda
+                name: Temperature
+
+      - type: entities
+        show_header_toggle: false
+        # title: Volume 1
+        entities:
+          - type: custom:fold-entity-row
+            head:
+              entity: sensor.status_volume_1
+              name: Volume 1 Status
+            items:
+              - entity: sensor.volume_used_volume_1
+                name: used
+
 
   - type: custom:vertical-stack-in-card
     title: Solar Grandparents
     cards:
       - type: sensor
-        name        : Actual power
-        entity      : sensor.solar_actual_power
-        graph       : line
+        name: Actual power
+        entity: sensor.solar_actual_power
+        graph: line
       - type: horizontal-stack
         cards:
           - type: sensor
@@ -111,4 +156,3 @@ cards:
           - type: sensor
             entity: sensor.solar_energy_total
             name: Total energy
-

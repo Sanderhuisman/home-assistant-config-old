@@ -3,3 +3,5 @@ custom_updater:
   component_urls:
     - https://raw.githubusercontent.com/Sanderhuisman/home-assistant-custom-components/master/custom_updater.json
     - https://raw.githubusercontent.com/robmarkcole/Hue-sensors-HASS/master/custom_updater.json
+  card_urls:
+    - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json

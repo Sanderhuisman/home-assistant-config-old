@@ -6,6 +6,13 @@ resources:
   - url: /local/slider-entity-row.js
     type: js
 
+  - url: /local/kiosk.js
+    type: js
+
+  # https://github.com/kalkih/mini-media-player
+  - url: /local/mini-media-player-bundle.js?v=1.0.2
+    type: module
+
   # https://github.com/custom-cards/vertical-stack-in-card
   - url: /local/vertical-stack-in-card.js?v=0.1.1
     type: js
