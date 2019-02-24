@@ -64,7 +64,7 @@ sensor:
         to    : Es
         # via   : Zl
 
-  - platform: hue
+  - platform: hue_cu
   - platform: template
     sensors:
       hue_dimmer_switch_1_battery:
@@ -95,9 +95,9 @@ sensor:
         value_template: "{{ state_attr('sensor.hue_dimmer_switch_1', 'battery') }}"
 
 binary_sensor:
-  - platform: hue
+  - platform: hue_cu
 device_tracker:
-  - platform: hue
+  - platform: hue_cu
 
 switch:
   - platform: mqtt
