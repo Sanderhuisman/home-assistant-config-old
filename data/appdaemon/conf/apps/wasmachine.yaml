@@ -1,9 +1,14 @@
 wasmachine_monitor:
-  module        : wasmachine
-  class         : WasmachineMonitor
+  module        : device_monitor
+  class         : DeviceMonitor
+
+  friendly_name : Wasmachine
+
   switch_state  : switch.blitzwolf_wasmachine_state
   sensor_power  : sensor.blitzwolf_wasmachine_power
-  delay         : 120
+
+  delay_on      : 30
+  delay_off     : 120
   threshold     : 2
   notifiers:
     - telegram_sander
