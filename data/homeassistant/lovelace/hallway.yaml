@@ -6,9 +6,14 @@ cards:
     entities:
       - light.hall_christmas_lights
 
-  - type: entities
+  - type: horizontal-stack
     title: Climate
-    show_header_toggle: false
-    entities:
-      - sensor.hall_climate_temperature
-      - sensor.hall_climate_humidity
+    cards:
+    - type: sensor
+      name        : Temperature
+      entity      : sensor.hall_climate_temperature
+      graph       : line
+    - type: sensor
+      name        : Humidity
+      entity      : sensor.hall_climate_humidity
+      graph       : line

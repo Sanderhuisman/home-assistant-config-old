@@ -2,18 +2,19 @@ path: home
 title: Home
 tab_icon: mdi:home-assistant
 cards:
-  - type: entities
-    show_header_toggle: false
+  - type: sensor
     title: Time
-    entities:
-      - sensor.date_time
+    entity: sensor.date_time
+
   - type: shopping-list
     title: Shopping List
+
   - type: entities
     title: Lights
     entities:
       - light.hall_christmas_lights
       - light.kitchen_christmas_lights
+
   - type: entities
     title: Eetlijst
     show_header_toggle: false
@@ -68,6 +69,7 @@ cards:
 
   - type: weather-forecast
     entity: weather.br_unknown_station
+
   - type: entities
     title: Climate
     show_header_toggle: false
@@ -98,26 +100,23 @@ cards:
     show_header_toggle: false
     entities:
       - sun.sun
-  - type: glance
-    title: Particles
-    entities:
-      - entity: sensor.luftdaten_15307_p1
-        name: PM10
-      - entity: sensor.luftdaten_15307_p2
-        name: PM2.5
-  - type: iframe
-    title: Weather radar
-    url: https://embed.windy.com/embed2.html?lat=52.233&lon=6.856&zoom=11&level=surface&overlay=radar&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=52.233&detailLon=6.856&metricWind=default&metricTemp=default&radarRange=-1
-  - type: entities
+
+  # - type: glance
+  #   title: Particles
+  #   entities:
+  #     - entity: sensor.luftdaten_15307_p1
+  #       name: PM10
+  #     - entity: sensor.luftdaten_15307_p2
+  #       name: PM2.5
+  # - type: iframe
+  #   title: Weather radar
+  #   url: https://embed.windy.com/embed2.html?lat=52.233&lon=6.856&zoom=11&level=surface&overlay=radar&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=52.233&detailLon=6.856&metricWind=default&metricTemp=default&radarRange=-1
+
+  - type: picture-glance
     title: Camera
-    show_header_toggle: false
-    entities:
-      - camera.huize_pd_camera
-  - type: entities
-    title: Automations
-    entities:
-      - automation.lights_on
-      - automation.lights_off
+    entities: []
+    camera_image: camera.huize_pd_camera
+
   - type: entities
     title: ISS
     show_header_toggle: false
@@ -142,3 +141,13 @@ cards:
             name: Current
           - entity: sensor.blitzwolf_wasmachine_power_factor
             name: Power factor
+
+  # - type: sensor
+  #   entity: sensor.p2000
+  #   name: P2000 Amsterdam
+  # - type: map
+  #   default_zoom: 7
+  #   entities:
+  #     - entity: sensor.p2000
+  #     - entity: zone.home
+  #   title: P2000 Enschede

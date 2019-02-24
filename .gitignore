@@ -140,7 +140,7 @@ data/db
 data/grafana
 data/homeassistant/.storage
 data/homeassistant/deps
-data/homeassistant/www
+data/homeassistant/www/google*
 data/influxdb
 data/mosquitto/data
 data/mosquitto/log

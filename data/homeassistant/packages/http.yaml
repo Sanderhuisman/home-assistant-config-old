@@ -1,10 +1,12 @@
 http:
   base_url                  : !secret http_base_url
   server_port               : !secret http_server_port
-  use_x_forwarded_for       : true
 
+  use_x_forwarded_for       : true
   trusted_proxies:
     - 127.0.0.1
+    # Traefik docker ip
+    - 172.19.0.3
 
   trusted_networks:
     - 192.168.2.0/24

@@ -1,7 +1,7 @@
-# camera:
-#   - platform: mjpeg
-#     name: Huize PD camera
-#     username        : !secret camera_username
-#     password        : !secret camera_password
-#     mjpeg_url       : !secret camera_mjpeg_url
-#     still_image_url : !secret camera_still_image_url
+camera:
+  - platform: mjpeg
+    name: Huize PD camera
+    username        : !secret camera_username
+    password        : !secret camera_password
+    mjpeg_url       : !secret camera_mjpeg_url
+    still_image_url : !secret camera_still_image_url

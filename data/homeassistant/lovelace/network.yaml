@@ -2,15 +2,27 @@ path: network
 title: Network
 icon: mdi:lan
 cards:
-  - type: entities
+  - type: custom:vertical-stack-in-card
     title: Router
-    show_header_toggle: false
-    entities:
-      - entity: sensor.asuswrt_upload
-        name: Upload
-      - entity: sensor.asuswrt_download
-        name: Download
-      - entity: sensor.asuswrt_upload_speed
-        name: Upload Speed
-      - entity: sensor.asuswrt_download_speed
-        name: Download Speed
+    cards:
+      - type: horizontal-stack
+        title: Network speed
+        cards:
+        - type: sensor
+          name        : Upload
+          entity      : sensor.asuswrt_upload_speed
+          graph       : line
+        - type: sensor
+          name        : Download
+          entity      : sensor.asuswrt_download_speed
+          graph       : line
+
+      - type: horizontal-stack
+        cards:
+          - type: sensor
+            entity: sensor.asuswrt_upload
+            name: Upload
+          - type: sensor
+            entity: sensor.asuswrt_download
+            name: Download
+

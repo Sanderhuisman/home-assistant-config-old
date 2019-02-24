@@ -34,30 +34,32 @@ cards:
       name        : Humidity
       entity      : sensor.sander_climate_humidity
       graph       : line
+
   - type: entities
     show_header_toggle: false
     title: NS
     entities:
       - sensor.enschede_groningen
       - sensor.groningen_zwolle_enschede
-  - type: entities
-    show_header_toggle: false
-    title: PostNL
-    entities:
-      - sensor.postnl
-  - type: entities
-    show_header_toggle: false
-    title: Space Launches
-    entities:
-      - sensor.spacelaunch
+
+  - type: sensor
+    name: PostNL
+    entity: sensor.postnl
+
+  - type: sensor
+    entity: sensor.spacelaunch
+    name: Space Launches
+
   - type: vertical-stack
     cards:
       - type: media-control
         entity: media_player.sander_chromecast
       - type: media-control
         entity: media_player.sander_home_mini
-      - type: sensor
-        entity: sensor.plex
+
+  - type: sensor
+    name: Plex
+    entity: sensor.plex
 
   - type: entities
     title: Switches
@@ -94,18 +96,19 @@ cards:
       - entity: sensor.volume_used_volume_1
         name  : Volume 1 used
 
+  - type: custom:vertical-stack-in-card
+    title: Solar Grandparents
+    cards:
+      - type: sensor
+        name        : Actual power
+        entity      : sensor.solar_actual_power
+        graph       : line
+      - type: horizontal-stack
+        cards:
+          - type: sensor
+            entity: sensor.solar_energy_today
+            name: Today's energy
+          - type: sensor
+            entity: sensor.solar_energy_total
+            name: Total energy
 
-  - type: entities
-    title: Solar panels grandparents
-    show_header_toggle: false
-    entities:
-      - type: custom:fold-entity-row
-        head:
-            type  : sensor
-            entity: sensor.solar_actual_power
-            name  : Actual power
-        items:
-          - entity: sensor.solar_energy_today
-            name  : Today's energy
-          - entity: sensor.solar_energy_total
-            name  : Total energy
