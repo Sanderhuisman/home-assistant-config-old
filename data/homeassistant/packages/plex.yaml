@@ -1,0 +1,5 @@
+panel_iframe:
+  plex:
+    title: Plex
+    icon: mdi:plex
+    url: !secret panel_plex_url

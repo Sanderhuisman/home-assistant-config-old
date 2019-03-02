@@ -131,7 +131,7 @@ services:
       - "traefik.protocol=http"
 
   homeassistant:
-    image: homeassistant/home-assistant:0.88.0
+    image: homeassistant/home-assistant:0.88.2
     restart: unless-stopped
     volumes:
       - /etc/timezone:/etc/timezone:ro
@@ -146,6 +146,11 @@ services:
     depends_on:
       - database
       - chronograf
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+        max-file: "3"
     labels:
       - "traefik.docker.network=web"
       - "traefik.enable=true"

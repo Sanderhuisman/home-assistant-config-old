@@ -16,17 +16,15 @@ class TransmissionMonitor(hass.Hass):
 
     def event_callback(self, event_name, data, kwargs):
         self.log("Event {} fired with data {}".format(event_name, data))
-        self._notify("Transmission event: \"{}\" with data {}".format(event_name.replace('_', ' '), data))
 
         if event_name == 'transmission_started_torrent':
             self._notify("Transmission torrent {} started".format(data['name']))
-            pass
         elif event_name == 'transmission_downloaded_torrent':
             self._notify("Transmission torrent {} finished".format(data['name']))
-            pass
 
 
     def _notify(self, message):
+        self.log("Sending notification: {}".format(message))
         for notifier in self.notifiers:
             self.notify(message, name=notifier)
 
