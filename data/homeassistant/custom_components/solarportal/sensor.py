@@ -129,10 +129,7 @@ class SolarPortalData(object):
                 '&stationid=' + str(self.stationid) + '&token=' +
                 self.token + '&key=apitest'
         )
-        response = urlopen(dataurl)
-        _LOGGER.debug("Response: {} with message {}".format(response.status, response.msg))
-
-        self.data = ET.parse(response).getroot()
+        self.data = ET.parse(urlopen(dataurl)).getroot()
         _LOGGER.debug("Data = %s", self.data)
 
 

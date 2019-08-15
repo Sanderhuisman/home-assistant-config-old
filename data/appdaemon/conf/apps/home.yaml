@@ -1,0 +1,29 @@
+home:
+  module        : home
+  class         : Home
+
+  media_players :
+    - media_player.spotify
+  lights        :
+    - light.hall_christmas_lights
+    - light.kitchen_christmas_lights
+
+  window:
+    - binary_sensor.kitchen_window_contact_sensor
+
+  # light_sensor  : input_number.test_slider
+  light_sensor  : sensor.br_irradiance
+  threshold     : 50
+  hysteresis    : 10
+  device_tracker:
+    - device_tracker.daan_iphone
+    - device_tracker.iphonevanbouke
+    - device_tracker.iris
+    - device_tracker.linda_android
+    - device_tracker.lys_iphone
+    - device_tracker.pascalle_iphone
+    - device_tracker.sander_g8141
+    - device_tracker.steven_android
+    - device_tracker.thomas_android
+  notifiers:
+#    - telegram_sander

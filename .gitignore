@@ -141,10 +141,14 @@ data/grafana
 data/homeassistant/.storage
 data/homeassistant/deps
 data/homeassistant/www/google*
+data/homeassistant/custom_components/hacs
+data/homeassistant/custom_components/docker_monitor
 data/influxdb
 data/mosquitto/data
 data/mosquitto/log
 data/node_red
+data/grocy
+data/kapacitor
 data/tasmoadmin
 
 .HA_VERSION

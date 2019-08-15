@@ -60,6 +60,7 @@ services:
     networks:
       - default
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./config/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     links:
       - influxdb
@@ -92,6 +93,10 @@ services:
     environment:
       KAPACITOR_HOSTNAME: kapacitor
       KAPACITOR_INFLUXDB_0_URLS_0: http://influxdb:8086
+    volumes:
+      - ./config/kapacitor.conf:/etc/kapacitor/kapacitor.conf:ro
+      # sudo mkdir -p /data/kapacitor/data
+      - ./data/kapacitor/data:/var/lib/kapacitor
     links:
       - influxdb
     ports:
@@ -130,8 +135,29 @@ services:
       - "traefik.port=3000"
       - "traefik.protocol=http"
 
+  grocy:
+    image: huizepd/grocy
+    restart: unless-stopped
+    build:
+      context: ./docker/grocy
+      dockerfile: Dockerfile
+    expose:
+      - 80
+    volumes:
+      - ./data/grocy:/config
+    networks:
+      - web
+    environment:
+      - TZ=Europe/London
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:grocy.huizepd.nl"
+      - "traefik.port=80"
+      - "traefik.protocol=http"
+
   homeassistant:
-    image: homeassistant/home-assistant:0.88.2
+    image: homeassistant/home-assistant:0.97.2
     restart: unless-stopped
     volumes:
       - /etc/timezone:/etc/timezone:ro

@@ -11,5 +11,5 @@ wasmachine_monitor:
   delay_off     : 120
   threshold     : 2
   notifiers:
-    - telegram_sander
+#    - telegram_sander
     - telegram_steven

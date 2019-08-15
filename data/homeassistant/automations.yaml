@@ -1,21 +1,5 @@
-- alias: Lights on
-  action:
-  - data:
-      entity_id:
-      - light.kitchen_christmas_lights
-      - light.hall_christmas_lights
-    service: light.turn_on
-  - data:
-      message: Light in the kitchen and hallway are turned on
-    service: notify.notifier
-  id: '1520286524786'
-  condition:
-  - after: sunset
-    after_offset: -01:00:00
-    condition: sun
-  - condition: state
-    entity_id: group.all_devices
-    state: home
+- id: '1520286524786'
+  alias: Lights on
   trigger:
   - event: sunset
     offset: -01:00:00
@@ -24,6 +8,19 @@
     from: not_home
     platform: state
     to: home
+  condition:
+  - after: sunset
+    after_offset: -01:00:00
+    condition: sun
+  - condition: state
+    entity_id: group.all_devices
+    state: home
+  action:
+  - data:
+      entity_id:
+      - light.kitchen_christmas_lights
+      - light.hall_christmas_lights
+    service: light.turn_on
 - id: '1523476422562'
   alias: Lights off
   trigger:
@@ -40,9 +37,6 @@
       - light.kitchen_christmas_lights
       - light.hall_christmas_lights
     service: light.turn_off
-  - data:
-      message: Light in the kitchen and hallway are turned off
-    service: notify.notifier
 - action:
   - data:
       entity_id:
@@ -84,7 +78,7 @@
   - event: sunset
     offset: -01:00:00
     platform: sun
-  - entity_id: device_tracker.sander_sander
+  - entity_id: person.sander
     from: not_home
     platform: state
     to: home
@@ -93,24 +87,17 @@
     after_offset: -01:00:00
     condition: sun
   - condition: state
-    entity_id: device_tracker.sander_sander
+    entity_id: person.sander
     state: home
   action:
   - data:
       entity_id:
       - light.kamer_sander
     service: light.turn_on
-  - data:
-      message: Sander light on
-    service: notify.notifier
-  - data:
-      message: Sander lights on
-      title: Automation
-    service: persistent_notification.create
 - id: '1523484905416'
   alias: Sander light off
   trigger:
-  - entity_id: device_tracker.sander_sander
+  - entity_id: person.sander
     from: home
     platform: state
     to: not_home
@@ -123,30 +110,3 @@
       entity_id:
       - light.kamer_sander
     service: light.turn_off
-  - data:
-      message: Sander light off
-    service: notify.notifier
-  - data:
-      message: Sander lights off
-      title: Automation
-    service: persistent_notification.create
-- id: '1544480559466'
-  alias: Set dark theme for the night
-  trigger:
-  - event: sunset
-    platform: sun
-  condition: []
-  action:
-  - service: frontend.set_theme
-    data:
-      name: midnight
-- id: '1544480671521'
-  alias: Set theme at sunrise
-  trigger:
-  - event: sunrise
-    platform: sun
-  condition: []
-  action:
-  - data:
-      name: light-navy-blue
-    service: frontend.set_theme

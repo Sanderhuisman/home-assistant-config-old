@@ -1,0 +1,29 @@
+2019-02-24 12:30:26 WARNING (MainThread) [homeassistant.loader] You are using a custom component for docker_monitor which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
+2019-02-24 12:30:26 WARNING (MainThread) [homeassistant.loader] You are using a custom component for custom_updater which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
+2019-02-24 12:30:27 WARNING (MainThread) [homeassistant.loader] You are using a custom component for sensor.eetlijst which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
+2019-02-24 12:30:27 WARNING (MainThread) [homeassistant.loader] You are using a custom component for sensor.solarportal which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
+2019-02-24 12:30:27 WARNING (MainThread) [homeassistant.loader] You are using a custom component for sensor.hue which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
+2019-02-24 12:30:30 WARNING (MainThread) [homeassistant.loader] You are using a custom component for binary_sensor.hue which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
+2019-02-24 12:30:30 WARNING (MainThread) [homeassistant.loader] You are using a custom component for device_tracker.hue which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
+2019-02-24 12:30:31 ERROR (MainThread) [homeassistant.components.sensor] Error while setting up platform solarportal
+Traceback (most recent call last):
+  File "/config/custom_components/sensor/solarportal.py", line 66, in setup_platform
+    data = SolarPortalData(host, port, username, password)
+  File "/config/custom_components/sensor/solarportal.py", line 110, in __init__
+    self.token = root.find('token').text
+AttributeError: 'NoneType' object has no attribute 'text'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/src/app/homeassistant/helpers/entity_platform.py", line 128, in _async_setup_platform
+    SLOW_SETUP_MAX_WAIT, loop=hass.loop)
+  File "/usr/local/lib/python3.6/asyncio/tasks.py", line 358, in wait_for
+    return fut.result()
+  File "/usr/local/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/sensor/solarportal.py", line 67, in setup_platform
+    except RunTimeError:
+NameError: name 'RunTimeError' is not defined
+2019-02-24 12:30:32 WARNING (MainThread) [homeassistant.loader] You are using a custom component for switch.docker_monitor which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
+2019-02-24 12:30:33 WARNING (MainThread) [homeassistant.loader] You are using a custom component for sensor.docker_monitor which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.

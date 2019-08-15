@@ -6,12 +6,24 @@ cards:
     entities:
       - light.kitchen_christmas_lights
 
-  - type: entity-filter
-    show_header_toggle: false
+  - type: media-control
+    title: Media
+    entity: media_player.spotify
+
+  - type: glance
+    title: Window Sensor
     entities:
-      - media_player.spotify
-    state_filter:
-      - 'playing'
-    card:
-      type: media-control
-      entity: media_player.spotify
+      - name: Window
+        entity: binary_sensor.kitchen_window_contact_sensor
+
+  - type: horizontal-stack
+    title: Climate
+    cards:
+    - type: sensor
+      name        : Temperature
+      entity      : sensor.kitchen_temperature
+      graph       : line
+    - type: sensor
+      name        : Humidity
+      entity      : sensor.kitchen_humidity
+      graph       : line

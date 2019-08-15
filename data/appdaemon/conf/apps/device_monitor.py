@@ -31,7 +31,7 @@ class DeviceMonitor(hass.Hass):
     def state_change(self, entity, attribute, old, new, kwargs):
         if self.get_state(self.switch_state) == 'on':
             if new != None and new != "":
-                self.log("Power Usage is: {}".format(float(new)))
+                self.log("Power Usage is: {}".format(float(new)), level="DEBUG")
 
                 # Device not started yet
                 if not self.device_on:

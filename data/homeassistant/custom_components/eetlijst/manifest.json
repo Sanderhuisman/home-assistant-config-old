@@ -1,0 +1,9 @@
+{
+        "domain": "eetlijst",
+        "name": "Eetlijst custom component",
+        "documentation": "https://github.com/Sanderhuisman/home-assistant-custom-components",
+        "requirements": [],
+        "dependencies": [],
+        "codeowners": ["@Sanderhuisman"]
+}
+

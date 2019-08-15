@@ -29,8 +29,13 @@ influxdb:
       # Local climate
       - sensor.hall_climate_temperature
       - sensor.hall_climate_humidity
+      - sensor.kitchen_temperature
+      - sensor.kitchen_humidity
+
       - sensor.sander_climate_temperature
       - sensor.sander_climate_humidity
+      - sensor.sander_climate_lux
+
       - sensor.steven_climate_temperature
       - sensor.steven_climate_pressure
 
@@ -71,30 +76,30 @@ influxdb:
       - sensor.docker_homeassistant_grafana_1_cpu_use
       - sensor.docker_homeassistant_grafana_1_memory_use_percent
 
-      - sensor.docker_management_portainer_1_cpu_use
-      - sensor.docker_management_portainer_1_memory_use_percent
-      - sensor.docker_management_watchtower_1_cpu_use
-      - sensor.docker_management_watchtower_1_memory_use_percent
-      - sensor.docker_management_traefik_1_cpu_use
-      - sensor.docker_management_traefik_1_memory_use_percent
-      - sensor.docker_management_pihole_1_cpu_use
-      - sensor.docker_management_pihole_1_memory_use_percent
+      # - sensor.docker_management_portainer_1_cpu_use
+      # - sensor.docker_management_portainer_1_memory_use_percent
+      # - sensor.docker_management_watchtower_1_cpu_use
+      # - sensor.docker_management_watchtower_1_memory_use_percent
+      # - sensor.docker_management_traefik_1_cpu_use
+      # - sensor.docker_management_traefik_1_memory_use_percent
+      # - sensor.docker_management_pihole_1_cpu_use
+      # - sensor.docker_management_pihole_1_memory_use_percent
 
-      - sensor.docker_cloud_nextcloud_1_cpu_use
-      - sensor.docker_cloud_nextcloud_1_memory_use_percent
-      - sensor.docker_cloud_database_1_cpu_use
-      - sensor.docker_cloud_database_1_memory_use_percent
+      # - sensor.docker_cloud_nextcloud_1_cpu_use
+      # - sensor.docker_cloud_nextcloud_1_memory_use_percent
+      # - sensor.docker_cloud_database_1_cpu_use
+      # - sensor.docker_cloud_database_1_memory_use_percent
 
-      - sensor.docker_media_transmission_1_cpu_use
-      - sensor.docker_media_transmission_1_memory_use_percent
-      - sensor.docker_media_transmission_proxy_1_cpu_use
-      - sensor.docker_media_transmission_proxy_1_memory_use_percent
-      - sensor.docker_media_sickchill_1_cpu_use
-      - sensor.docker_media_sickchill_1_memory_use_percent
-      - sensor.docker_media_couchpotato_1_cpu_use
-      - sensor.docker_media_couchpotato_1_memory_use_percent
-      - sensor.docker_media_plex_1_cpu_use
-      - sensor.docker_media_plex_1_memory_use_percent
+      # - sensor.docker_media_transmission_1_cpu_use
+      # - sensor.docker_media_transmission_1_memory_use_percent
+      # - sensor.docker_media_transmission_proxy_1_cpu_use
+      # - sensor.docker_media_transmission_proxy_1_memory_use_percent
+      # - sensor.docker_media_sickchill_1_cpu_use
+      # - sensor.docker_media_sickchill_1_memory_use_percent
+      # - sensor.docker_media_couchpotato_1_cpu_use
+      # - sensor.docker_media_couchpotato_1_memory_use_percent
+      # - sensor.docker_media_plex_1_cpu_use
+      # - sensor.docker_media_plex_1_memory_use_percent
 
       # Transmission
       - sensor.kotnetnas_transmission_up_speed

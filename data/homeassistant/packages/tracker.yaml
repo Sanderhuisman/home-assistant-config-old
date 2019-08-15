@@ -19,6 +19,41 @@ device_tracker:
 owntracks:
   max_gps_accuracy: 100
   waypoints: false
-#   mqtt_topic: "owntracks/#"
-#   # events_only: true
-#   events_only: false
+
+person:
+  - name: Linda
+    id: linda
+    device_trackers:
+      - device_tracker.linda_android
+  - name: Pascalle
+    id: pascalle
+    device_trackers:
+      - device_tracker.pascalle_iphone
+  - name: Bouke
+    id: bouke
+    device_trackers:
+      - device_tracker.iphonevanbouke
+  - name: Sander
+    id: sander
+    device_trackers:
+      - device_tracker.sander_g8141
+  - name: Lys
+    id: lys
+    device_trackers:
+      - device_tracker.lys_iphone
+  - name: Steven
+    id: steven
+    device_trackers:
+      - device_tracker.steven_android
+  - name: Iris
+    id: iris
+    device_trackers:
+      - device_tracker.iris
+  - name: Thomas
+    id: thomas
+    device_trackers:
+      - device_tracker.thomas_android
+  - name: Daan
+    id: daan
+    device_trackers:
+      - device_tracker.daan_iphone

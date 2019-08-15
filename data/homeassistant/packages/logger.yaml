@@ -1,6 +1,5 @@
 logger:
   default: warning
   logs:
-    # custom_components.sensor.docker_monitor : debug
-    custom_components.sensor.solarportal    : debug
-    custom_components.sensor.luftdaten_cu   : debug
+    custom_components.solarportal       : debug
+    custom_components.docker_monitor    : debug

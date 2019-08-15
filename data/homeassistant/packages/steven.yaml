@@ -25,8 +25,8 @@ light:
     brightness_scale: 100
     optimistic: false
 
-# media_player:
-#   - platform: samsungtv
-#     host: !secret steven_samsungtv_host
-#     port: !secret steven_samsungtv_port
-#     mac : !secret steven_samsungtv_mac
+media_player:
+  - platform: samsungtv
+    host: !secret steven_samsungtv_host
+    port: !secret steven_samsungtv_port
+    mac : !secret steven_samsungtv_mac

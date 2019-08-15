@@ -1,7 +1,0 @@
-# input_number:
-#   test_slider:
-#     name: Test Slider
-#     initial: 30
-#     min: 0
-#     max: 100
-#     step: 1

@@ -11,10 +11,12 @@ recorder:
     domains:
       - sensor
       - device_tracker
+      - person
+      - binary_sensor
 
   exclude:
     entities:
-     - sensor.date_time
-     - sensor.enschede_groningen
-     - sensor.groningen_zwolle_enschede
-     - sensor.postnl
+      - sensor.date_time
+      - sensor.enschede_groningen
+      - sensor.groningen_zwolle_enschede
+      - sensor.postnl

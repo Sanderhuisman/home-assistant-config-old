@@ -36,21 +36,27 @@ sensor:
     value_template        : "{{ float('%.1f'|format(value_json['ENERGY']['Factor'])) }}"
     unit_of_measurement   : ''
     icon                  : mdi:flash
-  # - platform              : mqtt
-  #   name                  : blitzwolf-wasmachine_energy-today
-  #   state_topic           : "tele/blitzwolf-wasmachine/SENSOR"
-  #   value_template        : '{{ value_json["ENERGY"]["Today"] }}'
-  #   unit_of_measurement   : "kWh"
-  # - platform              : mqtt
-  #   name                  : blitzwolf-wasmachine_energy-yesterday
-  #   state_topic           : "tele/blitzwolf-wasmachine/SENSOR"
-  #   value_template        : '{{ value_json["ENERGY"]["Yesterday"] }}'
-  #   unit_of_measurement   : "kWh"
-  # - platform              : mqtt
-  #   name                  : blitzwolf-wasmachine_energy-total
-  #   state_topic           : "tele/blitzwolf-wasmachine/SENSOR"
-  #   value_template        : '{{ value_json["ENERGY"]["Total"] }}'
-  #   unit_of_measurement   : "kWh"
+  - platform              : mqtt
+    name                  : Kitchen Temperature
+    state_topic           : 'kitchen/sensor/climate'
+    value_template        : '{{ value_json.temperature }}'
+    unit_of_measurement   : '°C'
+    device_class          : temperature
+  - platform              : mqtt
+    name                  : Kitchen Humidity
+    state_topic           : 'kitchen/sensor/climate'
+    value_template        : '{{ value_json.humidity }}'
+    unit_of_measurement   : '%'
+    device_class          : humidity
+
+binary_sensor:
+  - platform              : mqtt
+    name                  : "Kitchen Window Contact Sensor"
+    state_topic           : "kitchen/contact/window"
+    value_template        : "{{ value_json['state'] }}"
+    device_class          : window
+    payload_on            : "open"
+    payload_off           : "closed"
 
 switch:
   - platform              : mqtt
@@ -66,6 +72,6 @@ switch:
     retain                : true
 
 media_player:
-  - platform              : spotify
-    client_id             : !secret kitchen_spotify_id
-    client_secret         : !secret kitchen_spotify_secret
+ - platform              : spotify
+   client_id             : !secret kitchen_spotify_id
+   client_secret         : !secret kitchen_spotify_secret

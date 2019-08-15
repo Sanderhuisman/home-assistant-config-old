@@ -1,6 +1,5 @@
 light.steven_ledstrip:
   friendly_name: LED strip
-
 sensor.steven_climate_temperature:
   friendly_name: Temperature Steven
 sensor.steven_climate_pressure:
@@ -8,18 +7,10 @@ sensor.steven_climate_pressure:
   icon: mdi:gauge
 media_player.samsung_tv_remote:
   friendly_name: TV Steven
-
-sensor.sander_climate_temperature:
-  friendly_name: Temperature Sander
-sensor.sander_climate_humidity:
-  friendly_name: Humidity Sander
-  icon: mdi:water-percent
-
 sensor.plex:
   icon: mdi:plex
 switch.sander_sw1:
   icon: mdi:pine-tree
-
 sensor.hall_climate_temperature:
   friendly_name: Temperature Hallway
 sensor.hall_climate_humidity:
@@ -29,12 +20,9 @@ light.hall_christmas_lights:
   friendly_name: Hallway Christmas Lights
 light.kitchen_christmas_lights:
   friendly_name: Kitchen Christmas Lights
-
-
 configurator.axis00408c93b587local_16925420135:
   hidden: true
   homebridge_hidden: true
-
 sensor.kotnetnas_transmission_status:
   friendly_name: Transmission Status
   icon: mdi:information-outline
@@ -56,7 +44,6 @@ sensor.kotnetnas_transmission_up_speed:
 sensor.kotnetnas_transmission_down_speed:
   friendly_name: Transmission Down Speed
   icon: mdi:download
-
 sensor.asuswrt_upload:
   icon: mdi:upload
 sensor.asuswrt_download:
@@ -65,11 +52,8 @@ sensor.asuswrt_upload_speed:
   icon: mdi:upload
 sensor.asuswrt_download_speed:
   icon: mdi:download
-
-
 device_tracker.lys_iphone:
   friendly_name: Lys
-
 sensor.br_ground_temperature:
   friendly_name: Ground temperature
 sensor.br_wind_speed:
@@ -88,7 +72,6 @@ sensor.br_precipitation:
   friendly_name: Precipitation
 sensor.br_visibility:
   friendly_name: Visibility
-
 sensor.huize_pd_kirsten:
   friendly_name: Kirsten
 sensor.huize_pd_sander:
@@ -101,6 +84,29 @@ sensor.huize_pd_steven:
   friendly_name: Steven
 sensor.huize_pd_pascalle:
   friendly_name: Pascalle
-
 sensor.disk_use_percent:
   friendly_name: Disk use (percent)
+person.kirsten:
+  icon: mdi:grave-stone
+person.jochem:
+  icon: mdi:grave-stone
+person.linda:
+  icon: mdi:cake-variant
+person.pascalle:
+  icon: mdi:cookie
+person.bouke:
+  icon: mdi:tractor
+person.sander:
+  icon: mdi:run-fast
+person.lys:
+  icon: mdi:glass-cocktail
+person.steven:
+  icon: mdi:motorbike
+person.iris:
+  icon: mdi:glasses
+person.thomas:
+  icon: mdi:nature-people
+person.daan:
+  icon: mdi:emoticon-poop
+sensor.huize_pd_julian:
+  friendly_name: Julian

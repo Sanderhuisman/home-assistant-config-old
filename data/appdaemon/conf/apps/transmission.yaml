@@ -3,5 +3,5 @@ transmission_monitor:
   class         : TransmissionMonitor
 
   notifiers:
-    - telegram_sander
+#    - telegram_sander
     # - telegram_steven

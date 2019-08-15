@@ -2,10 +2,6 @@ path: home
 title: Home
 tab_icon: mdi:home-assistant
 cards:
-  - type: sensor
-    title: Time
-    entity: sensor.date_time
-
   - type: shopping-list
     title: Shopping List
 
@@ -21,7 +17,7 @@ cards:
     entities:
       - sensor.huize_pd_steven
       - sensor.huize_pd_sander
-      - sensor.huize_pd_kirsten
+      - sensor.huize_pd_julian
       - sensor.huize_pd_thomas
       - sensor.huize_pd_linda
       - sensor.huize_pd_pascalle
@@ -30,17 +26,15 @@ cards:
     cards:
       - type: entity-filter
         entities:
-          - device_tracker.kirsten_android
-          - device_tracker.jochem_iphone
-          - device_tracker.linda_android
-          - device_tracker.iphonevansven
-          - device_tracker.pascalle_iphone
-          - device_tracker.iphonevanbouke
-          - device_tracker.sander_sander
-          - device_tracker.lys_iphone
-          - device_tracker.steven_android
-          - device_tracker.thomas_android
-          - device_tracker.daan_iphone
+          - person.linda
+          - person.pascalle
+          - person.bouke
+          - person.sander
+          - person.lys
+          - person.steven
+          - person.iris
+          - person.thomas
+          - person.daan
         state_filter:
           - home
         card:
@@ -49,17 +43,15 @@ cards:
           title: People at home
       - type: entity-filter
         entities:
-          - device_tracker.kirsten_android
-          - device_tracker.jochem_iphone
-          - device_tracker.linda_android
-          - device_tracker.iphonevansven
-          - device_tracker.pascalle_iphone
-          - device_tracker.iphonevanbouke
-          - device_tracker.sander_sander
-          - device_tracker.lys_iphone
-          - device_tracker.steven_android
-          - device_tracker.thomas_android
-          - device_tracker.daan_iphone
+          - person.linda
+          - person.pascalle
+          - person.bouke
+          - person.sander
+          - person.lys
+          - person.steven
+          - person.iris
+          - person.thomas
+          - person.daan
         state_filter:
           - not_home
         card:
@@ -68,78 +60,95 @@ cards:
           title: People away
 
   - type: weather-forecast
-    entity: weather.br_unknown_station
+    entity: weather.dark_sky
 
-  - type: entities
+  - type: custom:vertical-stack-in-card
     title: Climate
-    show_header_toggle: false
-    entities:
-      - sensor.hall_climate_temperature
-      - sensor.hall_climate_humidity
-      - sensor.sander_climate_temperature
-      - sensor.sander_climate_humidity
-      - sensor.steven_climate_temperature
-      - sensor.steven_climate_pressure
+    cards:
+      - type: custom:vertical-stack-in-card
+        title: Hallway
+        cards:
+          - type: horizontal-stack
+            title: Hallway
+            cards:
+              - type: sensor
+                name: Temperature
+                entity: sensor.hall_climate_temperature
+              - type: sensor
+                name: Humidity
+                entity: sensor.hall_climate_humidity
+      - type: custom:vertical-stack-in-card
+        title: Kitchen
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                name: Temperature
+                entity: sensor.kitchen_temperature
+              - type: sensor
+                name: Humidity
+                entity: sensor.kitchen_humidity
+      - type: custom:vertical-stack-in-card
+        title: Sander
+        cards:
+          - type: horizontal-stack
+            title: Sander
+            cards:
+              - type: sensor
+                name: Temperature
+                entity: sensor.sander_climate_temperature
+              - type: sensor
+                name: Humidity
+                entity: sensor.sander_climate_humidity
+      - type: custom:vertical-stack-in-card
+        title: Steven
+        cards:
+          - type: horizontal-stack
+            title: Steven
+            cards:
+              - type: sensor
+                name: Temperature
+                entity: sensor.steven_climate_temperature
+              - type: sensor
+                name: Pressure
+                entity: sensor.steven_climate_pressure
 
-  - type: entities
-    title: Buienradar
-    show_header_toggle: false
+  - type: glance
+    title: Windows
     entities:
-      - sensor.br_ground_temperature
-      - sensor.br_temperature
-      - sensor.br_humidity
-      - sensor.br_irradiance
-      - sensor.br_precipitation
-      - sensor.br_pressure
-      - sensor.br_visibility
-      - sensor.br_wind_direction
-      - sensor.br_wind_speed
+      - name: Kitchen Window
+        entity: binary_sensor.kitchen_window_contact_sensor
 
-  - type: entities
-    title: Sun
-    show_header_toggle: false
-    entities:
-      - sun.sun
-
-  # - type: glance
-  #   title: Particles
+  # - type: entities
+  #   title: Weather
+  #   show_header_toggle: false
   #   entities:
-  #     - entity: sensor.luftdaten_15307_p1
-  #       name: PM10
-  #     - entity: sensor.luftdaten_15307_p2
-  #       name: PM2.5
-  # - type: iframe
-  #   title: Weather radar
-  #   url: https://embed.windy.com/embed2.html?lat=52.233&lon=6.856&zoom=11&level=surface&overlay=radar&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=52.233&detailLon=6.856&metricWind=default&metricTemp=default&radarRange=-1
+  #     - sensor.dark_sky_cloud_coverage
+  #     - sensor.dark_sky_precip
+  #     - sensor.dark_sky_precip_accumulation_0h
+  #     - sensor.dark_sky_precip_intensity
+  #     - sensor.dark_sky_precip_probability
+  #     - sensor.dark_sky_daily_max_precip_intensity_1d
+  #     - sensor.dark_sky_temperature
+  #     - sensor.dark_sky_daytime_high_temperature_1d
+  #     - sensor.dark_sky_overnight_low_temperature_1d
+  #     - sensor.dark_sky_daytime_high_apparent_temperature_1d
+  #     - sensor.dark_sky_overnight_low_apparent_temperature_1d
+  #     - sensor.dark_sky_dew_point
+  #     - sensor.dark_sky_humidity
+  #     - sensor.dark_sky_moon_phase_1d
+  #     - sensor.dark_sky_nearest_storm_distance
+  #     - sensor.dark_sky_ozone
+  #     - sensor.dark_sky_pressure
+  #     - sensor.dark_sky_sunrise_1d
+  #     - sensor.dark_sky_sunset_1d
+  #     - sensor.dark_sky_uv_index
+  #     - sensor.dark_sky_visibility
+  #     - sensor.dark_sky_wind_bearing
+  #     - sensor.dark_sky_wind_gust
+  #     - sensor.dark_sky_wind_speed
 
   - type: picture-glance
     title: Camera
     entities: []
-    camera_image: camera.huize_pd_camera
-
-  - type: entities
-    title: Switches
-    show_header_toggle: false
-    entities:
-      - type: custom:fold-entity-row
-        head:
-          entity: switch.blitzwolf_wasmachine_state
-          name: Wasmachine
-        items:
-          - entity: sensor.blitzwolf_wasmachine_power
-            name: Power
-          - entity: sensor.blitzwolf_wasmachine_voltage
-            name: Voltage
-          - entity: sensor.blitzwolf_wasmachine_current
-            name: Current
-          - entity: sensor.blitzwolf_wasmachine_power_factor
-            name: Power factor
-  # - type: sensor
-  #   entity: sensor.p2000
-  #   name: P2000 Amsterdam
-  # - type: map
-  #   default_zoom: 7
-  #   entities:
-  #     - entity: sensor.p2000
-  #     - entity: zone.home
-  #   title: P2000 Enschede
+    camera_image: camera.huizepd_cam

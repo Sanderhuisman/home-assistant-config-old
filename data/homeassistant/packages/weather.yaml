@@ -12,14 +12,48 @@ sensor:
       - irradiance
       - precipitation
       - visibility
-  # - platform: luftdaten_cu
-  #   sensorid: 15307
-  #   monitored_conditions:
-  #     - P1
-  #     - P2
+  - platform: darksky
+    api_key: !secret weather_darksky_key
+    forecast:
+      - 1
+    hourly_forecast:
+      - 0
+      - 1
+      - 2
+    monitored_conditions:
+      - icon
+      - precip_type
+      - precip_probability
+      - precip_accumulation
+      - precip_intensity
+      - precip_intensity_max
+      - temperature
+      - temperature_low
+      - temperature_high
+      - apparent_temperature
+      - apparent_temperature_low
+      - apparent_temperature_high
+      - dew_point
+      - wind_speed
+      - wind_gust
+      - wind_bearing
+      - cloud_cover
+      - humidity
+      - pressure
+      - visibility
+      - ozone
+      - uv_index
+      - moon_phase
+      - sunrise_time
+      - sunset_time
+      - nearest_storm_distance
+      - nearest_storm_bearing
 
 weather:
   - platform: buienradar
     latitude:   !secret homeassistant_latitude
     longitude:  !secret homeassistant_longitude
     forecast:   true
+
+  - platform: darksky
+    api_key: !secret weather_darksky_key

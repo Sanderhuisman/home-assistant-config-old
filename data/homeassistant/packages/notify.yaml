@@ -1,5 +1,0 @@
-notify:
-  - name: Notifier
-    platform: html5
-    gcm_sender_id: !secret notification_google_id
-    gcm_api_key:   !secret notification_google_key

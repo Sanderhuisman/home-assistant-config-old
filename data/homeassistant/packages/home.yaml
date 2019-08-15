@@ -1,6 +1,1 @@
 shopping_list:
-
-sensor:
-  - platform: time_date
-    display_options:
-      - 'date_time'

@@ -9,11 +9,11 @@ cards:
   - type: horizontal-stack
     title: Climate
     cards:
-    - type: sensor
-      name        : Temperature
-      entity      : sensor.hall_climate_temperature
-      graph       : line
-    - type: sensor
-      name        : Humidity
-      entity      : sensor.hall_climate_humidity
-      graph       : line
+      - type: sensor
+        name        : Temperature
+        entity      : sensor.hall_climate_temperature
+        graph       : line
+      - type: sensor
+        name        : Humidity
+        entity      : sensor.hall_climate_humidity
+        graph       : line

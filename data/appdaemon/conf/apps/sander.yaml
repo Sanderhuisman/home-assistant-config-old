@@ -2,6 +2,13 @@ sander:
   module        : sander
   class         : Sander
 
+  media_players :
+    - sensor.plex
+  lights        :
+    - light.table
+    - light.desk
+    - light.bed
+
   # light_sensor  : input_number.test_slider
   light_sensor  : sensor.br_irradiance
   threshold     : 50

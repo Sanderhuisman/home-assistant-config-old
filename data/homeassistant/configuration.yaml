@@ -9,3 +9,6 @@ homeassistant:
   packages:     !include_dir_named packages
 
 automation: !include automations.yaml
+
+hacs:
+  token: 7d54cc14d6c00c1e74fb49cc3f9716c8dcd094b9

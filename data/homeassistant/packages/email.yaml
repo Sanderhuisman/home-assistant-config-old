@@ -1,0 +1,5 @@
+panel_iframe:
+  email:
+    title: E-mail
+    icon: mdi:email
+    url: https://webmail.huizepd.nl

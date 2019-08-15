@@ -12,11 +12,5 @@ cards:
         name: Temperature
       - entity: sensor.steven_climate_pressure
         name: Pressure
-  # - type: entity-filter
-  #   entities:
-  #     - media_player.samsung_tv_remote
-  #   state_filter:
-  #     - 'playing'
-  #   card:
-  #     type: media-control
-  #     entity: media_player.samsung_tv_remote
+  - type: media-control
+    entity: media_player.samsung_tv_remote

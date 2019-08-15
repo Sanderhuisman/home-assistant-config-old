@@ -6,3 +6,5 @@ class SystemStartup(hass.Hass):
 
     def ha_event(self, event_name, data, kwargs):
         self.call_service("mqtt/publish", topic= "cmnd/sonoffs/POWER", payload=" ")
+
+        self.call_service("mqtt/publish", topic= "esp/state", payload="sync")

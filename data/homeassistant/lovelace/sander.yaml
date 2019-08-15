@@ -1,9 +1,12 @@
 path: sander
 title: Sander
 cards:
-  - type: entity-button
-    title: Master
-    entity: input_boolean.master
+  - type: entities
+    title: Tracker
+    show_header_toggle: false
+    entities:
+      - person.sander
+      - proximity.sander
 
   - type: entities
     title: Lights
@@ -36,9 +39,13 @@ cards:
         name: Humidity
         entity: sensor.sander_climate_humidity
         graph: line
+      - type: sensor
+        name: Lux
+        entity: sensor.sander_climate_lux
+        graph: line
 
   - type: custom:vertical-stack-in-card
-    title: Space
+    title: Trains
     cards:
       - type: sensor
         name: Enschede-Groningen
@@ -141,18 +148,18 @@ cards:
                 name: used
 
 
-  - type: custom:vertical-stack-in-card
-    title: Solar Grandparents
-    cards:
-      - type: sensor
-        name: Actual power
-        entity: sensor.solar_actual_power
-        graph: line
-      - type: horizontal-stack
-        cards:
-          - type: sensor
-            entity: sensor.solar_energy_today
-            name: Today's energy
-          - type: sensor
-            entity: sensor.solar_energy_total
-            name: Total energy
+  # - type: custom:vertical-stack-in-card
+  #   title: Solar Grandparents
+  #   cards:
+  #     - type: sensor
+  #       name: Actual power
+  #       entity: sensor.solar_actual_power
+  #       graph: line
+  #     - type: horizontal-stack
+  #       cards:
+  #         - type: sensor
+  #           entity: sensor.solar_energy_today
+  #           name: Today's energy
+  #         - type: sensor
+  #           entity: sensor.solar_energy_total
+  #           name: Total energy

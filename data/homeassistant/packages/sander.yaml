@@ -5,11 +5,19 @@ sensor:
     state_topic           : '/sander/temperature'
     unit_of_measurement   : '°C'
     value_template        : '{{ value_json.temperature }}'
+    device_class          : 'temperature'
   - platform              : mqtt
     name                  : sander_climate_humidity
     state_topic           : '/sander/temperature'
     unit_of_measurement   : '%'
     value_template        : '{{ value_json.humidity }}'
+    device_class          : 'humidity'
+  - platform              : mqtt
+    name                  : sander_climate_lux
+    state_topic           : '/sander/temperature'
+    unit_of_measurement   : 'lx'
+    value_template        : '{{ value_json.lux }}'
+    device_class          : 'illuminance'
 
   # PostNL
   - platform              : postnl
@@ -25,17 +33,17 @@ sensor:
     token                 : !secret sander_plex_token
     ssl                   : false
 
-  # Opa en Oma
-  - platform              : solarportal
-    host                  : !secret sander_solar_host
-    port                  : !secret sander_solar_port
-    username              : !secret sander_solar_username
-    password              : !secret sander_solar_password
-    scan_interval         : 30
-    resources:
-      - actualpower
-      - energytoday
-      - energytotal
+  # # Opa en Oma
+  # - platform              : solarportal
+  #   host                  : !secret sander_solar_host
+  #   port                  : !secret sander_solar_port
+  #   username              : !secret sander_solar_username
+  #   password              : !secret sander_solar_password
+  #   scan_interval         : 30
+  #   resources:
+  #     - actualpower
+  #     - energytoday
+  #     - energytotal
 
   - platform              : synologydsm
     host                  : !secret sander_dsm_host
@@ -64,7 +72,7 @@ sensor:
         to    : Es
         # via   : Zl
 
-  - platform: hue_cu
+  - platform: huec
   - platform: template
     sensors:
       hue_dimmer_switch_1_battery:
@@ -94,10 +102,15 @@ sensor:
           {% endif %}
         value_template: "{{ state_attr('sensor.hue_dimmer_switch_1', 'battery') }}"
 
+media_player:
+  - platform: plex
+    show_all_controls: false
+    use_episode_art: true
+    remove_unavailable_clients: true
+    client_remove_interval: 600
+
 binary_sensor:
-  - platform: hue_cu
-device_tracker:
-  - platform: hue_cu
+  - platform: huec
 
 switch:
   - platform: mqtt
@@ -116,6 +129,22 @@ hue:
   bridges:
     - host                : !secret sander_hue_host
 
+scene:
+  - name: Movie
+    entities:
+      light.bed:
+        state: true
+        brightness: 254
+        hs_color: [36.568,66.275]
+      light.table:
+        state: true
+        brightness: 254
+        hs_color: [36.568,66.275]
+      light.desk:
+        state: true
+        brightness: 239
+        color_temp: 443
+
 cast:
   media_player:
     - host                : !secret sander_chromecast_host
@@ -127,6 +156,15 @@ input_boolean:
     initial               : off
     icon                  : mdi:settings
 
+proximity:
+  sander:
+    ignored_zones:
+      - home
+    devices:
+      - person.sander
+    tolerance: 50
+    unit_of_measurement: km
+
 google_assistant:
   project_id              : !secret sander_google_project_id
   api_key                 : !secret sander_google_api_key
@@ -136,6 +174,10 @@ google_assistant:
     - light
     - group
   entity_config:
+    camera.huizepd_cam:
+      name      : camera
+      expose    : true
+      room      : "Camera"
     light.bed:
       name      : bed light
       expose    : true
@@ -162,3 +204,8 @@ google_assistant:
       name      : Kitchen lights
       expose    : true
       room      : "Kitchen"
+
+    # sensor.sander_climate_temperature:
+    #   name      : Room temperature
+    #   expose    : true
+    #   room      : "Room Sander"

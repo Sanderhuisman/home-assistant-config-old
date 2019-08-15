@@ -19,22 +19,36 @@
 #include <ArduinoJson.h>
 #include "SHT21.h"
 
+#include "BH1750.h"
+
 #include "wifi.secret.h"
 
 #define MQTT_SENSOR_TOPIC "/sander/temperature"
 
 int status = WL_IDLE_STATUS; // the WiFi radio's status
-const PROGMEM char* g_wifiSsid      = WIFI_SSID;
-const PROGMEM char* g_wifiPassword  = WIFI_PASSWORD;
+const PROGMEM char *g_wifiSsid = WIFI_SSID;
+const PROGMEM char *g_wifiPassword = WIFI_PASSWORD;
 
-const PROGMEM char* g_mqttGateway   = MQTT_GATEWAY;
-const PROGMEM char* g_mqttUser      = MQTT_USER;
-const PROGMEM char* g_mqttPassword  = MQTT_PASSWORD;
+const PROGMEM char *g_mqttGateway = MQTT_GATEWAY;
+const PROGMEM char *g_mqttUser = MQTT_USER;
+const PROGMEM char *g_mqttPassword = MQTT_PASSWORD;
 
 WiFiClient espClient;
 PubSubClient client(espClient);
 
 SHT21 SHT21;
+
+/*
+ * https://github.com/claws/BH1750
+ * 
+ * BH1750 can be physically configured to use two I2C addresses:   
+ * - 0x23 (most common) (if ADD pin had < 0.7VCC voltage)
+ * - 0x5C (if ADD pin had > 0.7VCC voltage) 
+ * Library uses 0x23 address as default, but you can define any other address.
+ * If you had troubles with default value - try to change it to 0x5C.
+*/
+BH1750 lightMeter(0x23);
+
 unsigned long oldTime = 0;
 unsigned long lastReconnectAttempt = 0;
 
@@ -58,10 +72,19 @@ void setup()
         WiFi.begin(g_wifiSsid, g_wifiPassword);
         delay(5000);
     }
-    client.setServer((char*)g_mqttGateway, 1883);
+    client.setServer((char *)g_mqttGateway, 1883);
     client.setCallback(callback);
 
     SHT21.begin();
+
+    if (lightMeter.begin(BH1750::ONE_TIME_HIGH_RES_MODE))
+    {
+        Serial.println(F("BH1750 Advanced begin"));
+    }
+    else
+    {
+        Serial.println(F("Error initialising BH1750"));
+    }
 }
 
 boolean reconnect()
@@ -77,17 +100,17 @@ boolean reconnect()
     return client.connected();
 }
 
-uint32_t TIMER_TickTime(const uint32_t culStart) 
+uint32_t TIMER_TickTime(const uint32_t culStart)
 {
-  uint32_t g_ulMsecTickCount = millis();
-  return (g_ulMsecTickCount >= culStart) ? (g_ulMsecTickCount - culStart) : ((0xFFFFFFFF - g_ulMsecTickCount) + culStart + 1);
+    uint32_t g_ulMsecTickCount = millis();
+    return (g_ulMsecTickCount >= culStart) ? (g_ulMsecTickCount - culStart) : ((0xFFFFFFFF - g_ulMsecTickCount) + culStart + 1);
 }
 
 void loop()
 {
-    if (!client.connected())
+    if (client.connected() == false)
     {
-        if(TIMER_TickTime(lastReconnectAttempt) >= 10000)
+        if (TIMER_TickTime(lastReconnectAttempt) >= 10000)
         {
             lastReconnectAttempt = millis();
             // Attempt to reconnect
@@ -99,16 +122,19 @@ void loop()
     }
     else
     {
-        if(TIMER_TickTime(oldTime) >= 10000)
+        if (TIMER_TickTime(oldTime) >= 10000)
         {
             StaticJsonDocument<200> doc;
             JsonObject root = doc.to<JsonObject>();
 
-            float temp = SHT21.getTemperature();
-            float humidity = SHT21.getHumidity();
+            float temperature = SHT21.getTemperature();
+            root["temperature"] = String(temperature);
 
-            root["temperature"] = String(temp);
+            float humidity = SHT21.getHumidity();
             root["humidity"] = String(humidity);
+
+            float lux = lightMeter.readLightLevel();
+            root["lux"] = String(lux);
 
             serializeJsonPretty(root, Serial);
             //Serial.println("");

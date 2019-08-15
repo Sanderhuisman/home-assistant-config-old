@@ -1,5 +1,3 @@
-// https://github.com/thomasloven/lovelace-slider-entity-row
-
 class SliderEntityRow extends Polymer.Element {
 
   static get template() {
@@ -8,6 +6,7 @@ class SliderEntityRow extends Polymer.Element {
         .flex {
           display: flex;
           align-items: center;
+          height: 40px;
           }
         .state {
           min-width: 45px;
@@ -27,27 +26,27 @@ class SliderEntityRow extends Polymer.Element {
     `;
 
     const input = Polymer.html`
-      <div>
+      <div on-click="stopPropagation">
           <div class="flex">
         <template is="dom-if" if="{{displaySlider}}">
             <ha-slider
+              dir="{{rtl}}"
               min="{{min}}"
               max="{{max}}"
               value="{{value}}"
               step="{{step}}"
               pin
               on-change="selectedValue"
-              on-click="stopPropagation"
               ignore-bar-touch
             ></ha-slider>
             <template is="dom-if" if="{{displayValue}}">
-              <span class="state" on-click="stopPropagation">
+              <span class="state">
                 [[statusString(stateObj)]]
               </span>
             </template>
         </template>
             <template is="dom-if" if="{{displayToggle}}">
-              <span class="toggle" on-click="stopPropagation">
+              <span class="toggle">
                 <ha-entity-toggle
                   state-obj="[[stateObj]]"
                   hass="[[_hass]]"
@@ -75,11 +74,12 @@ class SliderEntityRow extends Polymer.Element {
     `;
   }
 
-  setConfig(config) {
+  setConfig(config)
+  {
     const CONTROLLERS = {
       light: {
         set: (stateObj, value) => {
-          value = Math.ceil(value / 100.0 * 255);
+          value = Math.ceil(value/100.0*255);
           if (value)
             this._hass.callService('light', 'turn_on', {
               entity_id: stateObj.entity_id,
@@ -92,21 +92,21 @@ class SliderEntityRow extends Polymer.Element {
         },
         get: (stateObj) => {
           return (stateObj.state === 'on') ?
-            Math.ceil(stateObj.attributes.brightness * 100.0 / 255) :
+            Math.ceil(stateObj.attributes.brightness*100.0/255) :
             0;
         },
         supported: {
           slider: (stateObj) => {
-            if (stateObj.state === 'off' && this._config.hide_when_off) return false;
-            if ('brightness' in stateObj.attributes) return true;
-            if (('supported_features' in stateObj.attributes) &&
+            if(stateObj.state === 'off' && this._config.hide_when_off) return false;
+            if('brightness' in stateObj.attributes) return true;
+            if(('supported_features' in stateObj.attributes) &&
               (stateObj.attributes.supported_features & 1)) return true;
             return false;
           },
           toggle: () => true,
         },
         string: (stateObj, l18n) => {
-          if (stateObj.state === 'off') return l18n['state.default.off'];
+          if(stateObj.state === 'off') return l18n['state.default.off'];
           return `${this.controller.get(stateObj)} %`;
         },
         min: () => 0,
@@ -116,7 +116,7 @@ class SliderEntityRow extends Polymer.Element {
 
       media_player: {
         set: (stateObj, value) => {
-          value = value / 100.0;
+          value = value/100.0;
           this._hass.callService('media_player', 'volume_set', {
             entity_id: stateObj.entity_id,
             volume_level: value
@@ -125,7 +125,7 @@ class SliderEntityRow extends Polymer.Element {
         get: (stateObj) => {
           return (stateObj.attributes.is_volume_muted) ?
             0 :
-            Math.ceil(stateObj.attributes.volume_level * 100.0);
+            Math.ceil(stateObj.attributes.volume_level*100.0);
         },
         supported: {
           slider: () => true,
@@ -133,11 +133,32 @@ class SliderEntityRow extends Polymer.Element {
         },
         string: (stateObj, l18n) => {
           if (stateObj.attributes.is_volume_muted) return '-';
-          return `${this.controller.get(stateObj)} %`;
+          return !!stateObj.attributes.volume_level ? `${this.controller.get(stateObj)} %` : l18n['state.media_player.off'];
         },
         min: () => 0,
         max: () => 100,
         step: () => 5,
+      },
+
+      climate: {
+        set: (stateObj, value) => {
+          this._hass.callService('climate', 'set_temperature', {
+            entity_id: stateObj.entity_id,
+            temperature: value
+          });
+        },
+        get: (stateObj) => stateObj.attributes.temperature,
+        supported: {
+          slider: () => true,
+          toggle: () => true,
+        },
+        string: (stateObj, l18n) => {
+          if (stateObj.attributes.operation_mode === 'off') return l18n['state.climate.off'];
+          return `${this.controller.get(stateObj)} ${this._hass.config.unit_system.temperature}`;
+        },
+        min: (stateObj) => stateObj.attributes.min_temp,
+        max: (stateObj) => stateObj.attributes.max_temp,
+        step: () => 1,
       },
 
       cover: {
@@ -159,8 +180,8 @@ class SliderEntityRow extends Polymer.Element {
         },
         supported: {
           slider: (stateObj) => {
-            if (stateObj.attributes.hasOwnProperty('current_position')) return true;
-            if ((stateObj.attributes.hasOwnProperty('supported_features')) &&
+            if(stateObj.attributes.hasOwnProperty('current_position')) return true;
+            if((stateObj.attributes.hasOwnProperty('supported_features')) &&
               (stateObj.attributes.supported_features & 4)) return true;
             return false;
           },
@@ -201,7 +222,7 @@ class SliderEntityRow extends Polymer.Element {
           toggle: () => true,
         },
         string: (stateObj, l18n) => {
-          if (stateObj.state === 'off') return l18n['state.default.off'];
+          if(stateObj.state === 'off') return l18n['state.default.off'];
           return stateObj.attributes.speed;
         },
         min: (stateObj) => 0,
@@ -212,10 +233,10 @@ class SliderEntityRow extends Polymer.Element {
       input_number: {
         set: (stateObj, value) => {
           value = value || 0;
-          this._hass.callService('input_number', 'set_value', {
-            entity_id: stateObj.entity_id,
-            value: value
-          });
+            this._hass.callService('input_number', 'set_value', {
+              entity_id: stateObj.entity_id,
+              value: value
+            });
         },
         get: (stateObj) => {
           return stateObj.state;
@@ -253,7 +274,7 @@ class SliderEntityRow extends Polymer.Element {
         },
         string: (stateObj, l18n) => stateObj.state,
         min: () => 0,
-        max: (stateObj) => stateObj.attributes.options.length - 1,
+        max: (stateObj) => stateObj.attributes.options.length-1,
         step: () => 1,
       },
     };
@@ -263,21 +284,23 @@ class SliderEntityRow extends Polymer.Element {
     this.stateObj = null;
     const domain = config.entity.split('.')[0];
     this.controller = CONTROLLERS[domain];
-    if (!this.controller) throw new Error('Unsupported entity domain: ' + domain);
+    if(!this.controller) throw new Error('Unsupported entity domain: ' + domain);
 
     this.displayRow = !config.full_row;
     this.displayToggle = config.toggle && this.controller.supported.toggle();
     this.displayValue = !this.displayToggle;
-    if (config.hide_state) this.displayValue = false;
+    if(config.hide_state) this.displayValue = false;
     this.displaySlider = false;
 
     this.min = config.min || 0;
     this.max = config.max || 100;
     this.step = config.step || 5;
 
-    if (this._hass && this._config) {
+    this.rtl = this._isRTL()? "rtl" : "ltr";
+
+    if(this._hass && this._config) {
       this.stateObj = this._config.entity in this._hass.states ? this._hass.states[this._config.entity] : null;
-      if (this.stateObj) {
+      if(this.stateObj) {
         this.min = this._config.min || this.controller.min(this.stateObj);
         this.max = this._config.max || this.controller.max(this.stateObj);
         this.step = this._config.step || this.controller.step(this.stateObj);
@@ -289,16 +312,17 @@ class SliderEntityRow extends Polymer.Element {
 
   statusString(stateObj) {
     let l18n = this._hass.resources[this._hass.language];
-    if (!stateObj) return l18n['state.default.unavailable'];
+    if(!stateObj) return l18n['state.default.unavailable'];
     return this.controller.string(stateObj, l18n);
   }
 
   set hass(hass) {
     this._hass = hass;
+    this.rtl = this._isRTL()? "rtl" : "ltr";
 
-    if (hass && this._config) {
+    if(hass && this._config) {
       this.stateObj = this._config.entity in hass.states ? hass.states[this._config.entity] : null;
-      if (this.stateObj) {
+      if(this.stateObj) {
         this.min = this._config.min || this.controller.min(this.stateObj);
         this.max = this._config.max || this.controller.max(this.stateObj);
         this.step = this._config.step || this.controller.step(this.stateObj);
@@ -306,6 +330,14 @@ class SliderEntityRow extends Polymer.Element {
         this.displaySlider = this.controller.supported.slider(this.stateObj);
       }
     }
+  }
+
+  _isRTL() {
+    if(!this._hass) return false;
+    const lang = this._hass.language || "en";
+    if(!this._hass.translationMetadata.translations[lang]) return false;
+    const retval =  this._hass.translationMetadata.translations[lang].isRTL || false;
+    return retval;
   }
 
   selectedValue(ev) {

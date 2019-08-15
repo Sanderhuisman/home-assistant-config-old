@@ -14,7 +14,7 @@ class DockerMonitor(hass.Hass):
 
     def event_callback(self, event_name, data, kwargs):
         if event_name == 'docker_container_event':
-            self.log("Event {} fired with data {}".format(event_name, data))
+            # self.log("Event {} fired with data {}".format(event_name, data), level = "DEBUG")
 
             if data['Status'] in ['start']:
                 message = "Container \"{}\" started".format(
