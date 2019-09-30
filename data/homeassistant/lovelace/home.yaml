@@ -8,8 +8,10 @@ cards:
   - type: entities
     title: Lights
     entities:
-      - light.hall_christmas_lights
-      - light.kitchen_christmas_lights
+      - entity: light.hall_christmas_lights
+        name: Hallway
+      - entity: light.kitchen_christmas_lights
+        name: Kitchen
 
   - type: entities
     title: Eetlijst
@@ -118,7 +120,7 @@ cards:
   - type: glance
     title: Windows
     entities:
-      - name: Kitchen Window
+      - name: Kitchen
         entity: binary_sensor.kitchen_window_contact_sensor
 
   # - type: entities
