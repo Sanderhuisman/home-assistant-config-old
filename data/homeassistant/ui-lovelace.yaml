@@ -1,24 +1,23 @@
 resources:
   - url: /local/card-tools.js
     type: js
-  - url: /local/fold-entity-row.js
+  - url: /community_plugin/lovelace-fold-entity-row/fold-entity-row.js
     type: js
-  - url: /local/slider-entity-row.js
+  - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
     type: js
 
   - url: /local/kiosk.js
     type: js
 
   # https://github.com/kalkih/mini-media-player
-  - url: /local/mini-media-player-bundle.js?v=1.0.2
+  - url: /community_plugin/mini-media-player/mini-media-player-bundle.js
     type: module
 
   # https://github.com/custom-cards/vertical-stack-in-card
-  - url: /local/vertical-stack-in-card.js?v=0.1.1
+  - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
     type: js
 
-  # https://github.com/custom-cards/tracker-card
-  - url: /customcards/github/custom-cards/tracker-card.js?track=true
+  - url: /community_plugin/aftership-card/aftership-card.js
     type: module
 
 title: HuizePD

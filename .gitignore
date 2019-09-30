@@ -141,6 +141,7 @@ data/grafana
 data/homeassistant/.storage
 data/homeassistant/deps
 data/homeassistant/www/google*
+data/homeassistant/www/community
 data/homeassistant/custom_components/hacs
 data/homeassistant/custom_components/docker_monitor
 data/influxdb
