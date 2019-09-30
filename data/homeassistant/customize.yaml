@@ -84,6 +84,8 @@ sensor.huize_pd_steven:
   friendly_name: Steven
 sensor.huize_pd_pascalle:
   friendly_name: Pascalle
+sensor.huize_pd_julian:
+  friendly_name: Julian
 sensor.disk_use_percent:
   friendly_name: Disk use (percent)
 person.kirsten:
@@ -108,5 +110,5 @@ person.thomas:
   icon: mdi:nature-people
 person.daan:
   icon: mdi:emoticon-poop
-sensor.huize_pd_julian:
-  friendly_name: Julian
+person.julian:
+  icon: mdi:baby-carriage
