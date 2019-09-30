@@ -1,5 +1,5 @@
-panel_iframe:
-  grocy:
-    title: Grocy
-    icon: mdi:chart-timeline
-    url: !secret panel_grocy_url
+# panel_iframe:
+#   grocy:
+#     title: Grocy
+#     icon: mdi:chart-timeline
+#     url: !secret panel_grocy_url
