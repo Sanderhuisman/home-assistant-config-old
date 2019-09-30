@@ -57,3 +57,7 @@ person:
     id: daan
     device_trackers:
       - device_tracker.daan_iphone
+  - name: Julian
+    id: julian
+    device_trackers:
+      - device_tracker.julianvnderwijk

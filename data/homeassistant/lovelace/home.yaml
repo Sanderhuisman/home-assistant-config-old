@@ -35,6 +35,7 @@ cards:
           - person.iris
           - person.thomas
           - person.daan
+          - person.julian
         state_filter:
           - home
         card:
@@ -52,6 +53,7 @@ cards:
           - person.iris
           - person.thomas
           - person.daan
+          - person.julian
         state_filter:
           - not_home
         card:
