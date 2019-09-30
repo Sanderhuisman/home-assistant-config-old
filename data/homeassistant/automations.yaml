@@ -110,3 +110,55 @@
       entity_id:
       - light.kamer_sander
     service: light.turn_off
+- id: '1567069175254'
+  alias: Window Rain Detection Kitchen
+  trigger:
+  - entity_id: binary_sensor.kitchen_window_contact_sensor
+    from: 'off'
+    platform: state
+    to: 'on'
+  - above: '0.1'
+    entity_id: sensor.dark_sky_precip_intensity
+    platform: numeric_state
+  condition:
+  - above: '90'
+    below: '180'
+    condition: numeric_state
+    entity_id: sensor.dark_sky_wind_bearing
+  action:
+  - data:
+      message: Close kitchen window
+    service: notify.telegram_steven
+- id: '1567070269761'
+  alias: Window Climate Control Steven Open
+  trigger:
+  - platform: template
+    value_template: '{{(states(''sensor.steven_climate_temperature'')|float - states(''sensor.dark_sky_temperature'')|float)
+      > 1}}'
+  condition:
+  - above: '20'
+    condition: numeric_state
+    entity_id: sensor.steven_climate_temperature
+  - condition: state
+    entity_id: person.steven
+    state: home
+  action:
+  - data:
+      message: Open room window
+    service: notify.telegram_steven
+  - delay: 00:10
+- id: '1567072199331'
+  alias: Window Climate Control Steven Close
+  trigger:
+  - platform: template
+    value_template: '{{((states(''sensor.steven_climate_temperature'')|float - states(''sensor.dark_sky_temperature'')|float)
+      < -1 ) or (states(''sensor.steven_climate_temperature'')|float < 20)}}'
+  condition:
+  - condition: state
+    entity_id: person.steven
+    state: home
+  action:
+  - data:
+      message: Close room window
+    service: notify.telegram_steven
+  - delay: 00:10
