@@ -48,6 +48,11 @@ sensor:
     value_template        : '{{ value_json.humidity }}'
     unit_of_measurement   : '%'
     device_class          : humidity
+  - platform              : mqtt
+    name                  : Kitchen Plant Soil Moisture
+    state_topic           : 'kitchen/plant/soilmoisture'
+    unit_of_measurement   : '%'
+    device_class          : humidity
 
 binary_sensor:
   - platform              : mqtt
@@ -75,3 +80,11 @@ media_player:
  - platform              : spotify
    client_id             : !secret kitchen_spotify_id
    client_secret         : !secret kitchen_spotify_secret
+
+plant:
+  kitchen_plant:
+    sensors:
+      moisture           : sensor.kitchen_plant_soil_moisture
+      temperature        : sensor.kitchen_temperature
+    min_moisture         : 30
+    max_moisture         : 80

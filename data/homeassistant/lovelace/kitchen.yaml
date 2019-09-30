@@ -27,3 +27,6 @@ cards:
       name        : Humidity
       entity      : sensor.kitchen_humidity
       graph       : line
+  - type: plant-status
+    name      : Basilicum
+    entity    : plant.kitchen_plant
