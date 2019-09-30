@@ -24,15 +24,6 @@ sensor:
     username              : !secret sander_postnl_username
     password              : !secret sander_postnl_password
 
-  # Plex
-  - platform              : plex
-    host                  : !secret sander_plex_host
-    port                  : !secret sander_plex_port
-    username              : !secret sander_plex_username
-    password              : !secret sander_plex_password
-    token                 : !secret sander_plex_token
-    ssl                   : false
-
   # # Opa en Oma
   # - platform              : solarportal
   #   host                  : !secret sander_solar_host
@@ -102,12 +93,15 @@ sensor:
           {% endif %}
         value_template: "{{ state_attr('sensor.hue_dimmer_switch_1', 'battery') }}"
 
-media_player:
-  - platform: plex
-    show_all_controls: false
+plex:
+  host                  : !secret sander_plex_host
+  port                  : !secret sander_plex_port
+  token                 : !secret sander_plex_token
+  ssl: false
+  verify_ssl: false
+  media_player:
     use_episode_art: true
-    remove_unavailable_clients: true
-    client_remove_interval: 600
+    show_all_controls: true
 
 binary_sensor:
   - platform: huec

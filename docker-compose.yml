@@ -1,18 +1,32 @@
-version: '3'
+version: '3.7'
 
 services:
-  database:
-    image: mariadb:latest
+  hass-configurator:
+    image: "causticlab/hass-configurator-docker:x86_64"
     restart: unless-stopped
-    env_file:
-      - mariadb.env
+    ports:
+      - "3218:3218/tcp"
+    networks:
+      - default
+    volumes:
+      - ./data/configurator:/config
+      - ./data/homeassistant:/hass-config
+
+  database:
+    image: mariadb:10
+    restart: unless-stopped
     networks:
       - default
     volumes:
       - ./data/db/mariadb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
 
   mosquitto:
-    image: eclipse-mosquitto:latest
+    image: eclipse-mosquitto:1.6
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -25,7 +39,7 @@ services:
       - 1883:1883
 
   appdaemon:
-    image: acockburn/appdaemon:latest
+    image: acockburn/appdaemon:3.0.5
     restart: unless-stopped
     ports:
       - 5051:5050
@@ -36,11 +50,13 @@ services:
       - ./data/appdaemon/conf:/conf
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-    env_file:
-      - appdaemon.env
+    environment:
+      - HA_UR=http://homeassistant:8123
+      - TOKEN=${APPDAEMON_TOKEN}
+      - DASH_URL=${APPDAEMON_DASH_URL}
 
   tasmoadmin:
-    image: raymondmm/tasmoadmin:latest
+    image: raymondmm/tasmoadmin:v1.6.0
     restart: unless-stopped
     networks:
       - default
@@ -55,7 +71,7 @@ services:
 
   # Define a Telegraf service
   telegraf:
-    image: telegraf:latest
+    image: telegraf:1.12-alpine
     restart: unless-stopped
     networks:
       - default
@@ -71,7 +87,7 @@ services:
 
   # Define a Chronograf service
   chronograf:
-    image: chronograf:latest
+    image: chronograf:1.7-alpine
     restart: unless-stopped
     networks:
       - default
@@ -86,7 +102,7 @@ services:
 
   # Define a Kapacitor service
   kapacitor:
-    image: kapacitor:latest
+    image: kapacitor:1.5-alpine
     restart: unless-stopped
     networks:
       - default
@@ -103,7 +119,7 @@ services:
       - 9092:9092
 
   influxdb:
-    image: influxdb:latest
+    image: influxdb:1.7-alpine
     restart: unless-stopped
     networks:
       - default
@@ -113,10 +129,8 @@ services:
       - ./data/influxdb/data:/var/lib/influxdb
 
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:6.3.6
     restart: unless-stopped
-    expose:
-      - "3000"
     networks:
       - default
       - web
@@ -131,7 +145,7 @@ services:
     labels:
       - "traefik.docker.network=web"
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:grafana.huizepd.nl"
+      - "traefik.frontend.rule=Host:grafana.${DOMAIN}"
       - "traefik.port=3000"
       - "traefik.protocol=http"
 
@@ -157,7 +171,7 @@ services:
       - "traefik.protocol=http"
 
   homeassistant:
-    image: homeassistant/home-assistant:0.97.2
+    image: homeassistant/home-assistant:0.99.3
     restart: unless-stopped
     volumes:
       - /etc/timezone:/etc/timezone:ro
@@ -167,8 +181,6 @@ services:
     networks:
       - default
       - web
-    expose:
-     - "8123"
     depends_on:
       - database
       - chronograf
@@ -180,7 +192,7 @@ services:
     labels:
       - "traefik.docker.network=web"
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:home.huizepd.nl"
+      - "traefik.frontend.rule=Host:home.${DOMAIN}"
       - "traefik.port=8123"
       - "traefik.protocol=http"
 
