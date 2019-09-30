@@ -2,4 +2,4 @@ logger:
   default: warning
   logs:
     custom_components.solarportal       : debug
-    custom_components.docker_monitor    : debug
+    # custom_components.docker_monitor    : debug
